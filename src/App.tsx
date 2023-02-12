@@ -1,19 +1,20 @@
-import { useState } from 'react';
-import { Button, Layout } from 'antd';
+import { Layout } from 'antd';
 import logo from './assets/react.svg';
+import { Outlet } from 'react-router-dom';
+import { ErrorBoundary } from './components';
 import 'antd/dist/reset.css';
+import './App.scss';
 
 export function App(): JSX.Element {
-  const [count, setCount] = useState(0);
-
   return (
-    <Layout>
+    <Layout className="layout">
       <Layout.Header>
-        <img src={logo} alt="GAF energy logo" className="logo" width={40} />
+        <img src={logo} alt="GAF energy logo" className="logo" width={40}/>
       </Layout.Header>
       <Layout.Content>
-        <p>{count}</p>
-        <Button onClick={(): void => setCount(count + 1)}>+</Button>
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
       </Layout.Content>
       <Layout.Footer>
         <p>footer</p>
