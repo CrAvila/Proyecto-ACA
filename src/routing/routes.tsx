@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
-import { App } from '../App';
-import { Home, Login, NotFound } from '../pages';
+import { App } from 'App';
+import { Home, Login, NotFound } from 'pages';
 
 export const routes: RouteObject = {
   element: <App />,

@@ -1,7 +1,7 @@
 import { Layout } from 'antd';
-import logo from './assets/react.svg';
+import logo from 'assets/react.svg';
 import { Outlet } from 'react-router-dom';
-import { ErrorBoundary } from './components';
+import { ErrorBoundary } from 'components';
 import 'antd/dist/reset.css';
 import './App.scss';
 
@@ -9,7 +9,7 @@ export function App(): JSX.Element {
   return (
     <Layout className="layout">
       <Layout.Header>
-        <img src={logo} alt="GAF energy logo" className="logo" width={40}/>
+        <img src={logo} alt="GAF energy logo" className="logo" width={40} />
       </Layout.Header>
       <Layout.Content>
         <ErrorBoundary>
