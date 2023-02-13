@@ -16,9 +16,6 @@ export function App(): JSX.Element {
           <Outlet />
         </ErrorBoundary>
       </Layout.Content>
-      <Layout.Footer>
-        <p>footer</p>
-      </Layout.Footer>
     </Layout>
   );
 }

@@ -1,14 +1,18 @@
-import { Typography } from 'antd';
+import { Button, Typography } from 'antd';
 import { useState } from 'react';
 import { Quake } from 'types/api/responses';
+import { PlusOutlined } from '@ant-design/icons';
 import { CapClient } from 'api/capClient';
+import { DrawerForm } from 'components';
+import { useAppDispatch } from 'hooks';
 
 export function Home(): JSX.Element {
-  const [state, setState] = useState<Quake[]>([]);
   const { Title } = Typography;
+  const [state, setState] = useState<Quake[]>([]);
+  const dispatch = useAppDispatch();
   const onCLick = (): void => {
     const api = new CapClient('test-api-key');
-    api.getQuakes({ date: { min: '2020-10-15' } }).then((res) => {
+    api.getQuakes({ descLike: '', sort: 'Id' }).then((res) => {
       if (Array.isArray(res)) {
         setState(res);
       } else {
@@ -17,9 +21,15 @@ export function Home(): JSX.Element {
     });
   };
 
+  const onNewLayer = (): void => {
+    dispatch.ui.changeDrawerForm(true);
+  };
+
   return (
     <div>
-      <button onClick={onCLick}>bum</button>
+      <Button onClick={onNewLayer} icon={<PlusOutlined />}>
+        New layer
+      </Button>
       <Title level={1}>You are in home</Title>
       <ul>
         {state.map((quake) => (
@@ -28,6 +38,7 @@ export function Home(): JSX.Element {
           </li>
         ))}
       </ul>
+      <DrawerForm />
     </div>
   );
 }
