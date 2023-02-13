@@ -40,7 +40,7 @@ export function Earth(props: any){
         side={THREE.DoubleSide}/>
     </mesh>
         <mesh>
-            <sphereGeometry args={[1, 32, 32]}/>
+            <sphereGeometry args={[1, 50, 50]}/>
             <meshPhongMaterial specularMap={specularMap}/>
             <meshStandardMaterial 
             map={colorMap} 
@@ -56,6 +56,7 @@ export function Earth(props: any){
             rotateSpeed={0.4}
             />
         </mesh>
+
     </>
     )
 }
