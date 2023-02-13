@@ -6,7 +6,7 @@ import EarthSpecularMap from "../../assets/textures/8k_earth_specular_map.jpg"
 import EarthCloudsMap from "../../assets/textures/8k_earth_clouds.jpg"
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Stars } from "@react-three/drei";
 import * as THREE from "three";
 
 
@@ -19,6 +19,17 @@ export function Earth(props: any){
     return( 
     <>
     <ambientLight intensity={1}/>
+
+    <pointLight color="#f6f3ea" position={[2, 0, 2]}  intensity={1.2}/>
+
+    <Stars 
+        radius={300}
+        depth={60}
+        count={20000}
+        factor={7}
+        saturation={0}
+        fade={true}
+    />
     <mesh>
         <sphereGeometry args={[1.005, 32, 32]} />
         <meshPhongMaterial 
@@ -31,7 +42,12 @@ export function Earth(props: any){
         <mesh>
             <sphereGeometry args={[1, 32, 32]}/>
             <meshPhongMaterial specularMap={specularMap}/>
-            <meshStandardMaterial map={colorMap} normalMap={normalMap} />
+            <meshStandardMaterial 
+            map={colorMap} 
+            normalMap={normalMap} 
+            metalness={0.4}
+            roughness={0.75}
+            />
             <OrbitControls 
             enableZoom={true} 
             enablePan={true}
