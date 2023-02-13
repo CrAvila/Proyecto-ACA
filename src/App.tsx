@@ -4,21 +4,25 @@ import { Outlet } from 'react-router-dom';
 import { ErrorBoundary } from 'components';
 import 'antd/dist/reset.css';
 import './App.scss';
+import styled from "styled-components"
+import { Canvas } from '@react-three/fiber';
+import { Suspense } from "react";
+import { Earth } from 'components/earth/earth';
+
+const CanvasContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 
 export function App(): JSX.Element {
   return (
-    <Layout className="layout">
-      <Layout.Header>
-        <img src={logo} alt="GAF energy logo" className="logo" width={40} />
-      </Layout.Header>
-      <Layout.Content>
-        <ErrorBoundary>
-          <Outlet />
-        </ErrorBoundary>
-      </Layout.Content>
-      <Layout.Footer>
-        <p>footer</p>
-      </Layout.Footer>
-    </Layout>
+    <CanvasContainer>
+      <Canvas>
+        <Suspense fallback={null}>
+          <Earth />
+        </Suspense>
+      </Canvas>
+    </CanvasContainer>
   );
 }
