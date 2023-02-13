@@ -1,21 +1,23 @@
 import { createModel } from '@rematch/core';
 import { UIState } from 'types/state';
-import { changeDrawerForm } from 'state/reducers';
+import { changeDrawerForm, changeQuakeFormValue, changeRadiusScale } from 'state/reducers';
 
 const initialState: UIState = {
   layerForm: {
     loading: false,
     open: false
   },
-  filterValues: {
-    descLike: '',
-    sort: 'Id'
+  quakeForm: {
+    rangePercent: 5,
+    data: {}
   }
 };
 
 export const uiModel = createModel()({
   state: initialState,
   reducers: {
-    changeDrawerForm
+    changeDrawerForm,
+    changeQuakeFormValue,
+    changeRadiusScale
   }
 });

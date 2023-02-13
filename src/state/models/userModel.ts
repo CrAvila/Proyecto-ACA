@@ -11,7 +11,5 @@ const initialState: UserState = {
 
 export const userModel = createModel()({
   state: initialState,
-  reducers: {
-    caca: (x, v, q) => {},
-  }
+  reducers: {}
 });
