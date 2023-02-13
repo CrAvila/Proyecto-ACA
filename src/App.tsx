@@ -10,8 +10,8 @@ import { Suspense } from "react";
 import { Earth } from 'components/earth/earth';
 
 const CanvasContainer = styled.div`
-  width: 100vh;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 
