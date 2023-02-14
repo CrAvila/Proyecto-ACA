@@ -27,7 +27,6 @@ export function QuakeForm(): JSX.Element {
   const newMaxDepth = Math.trunc(mapToExponential(rangePercent));
   const depthMarks = createMarks({ min: 0, max: newMaxDepth }, Units.km, newMaxDepth / 5);
   const magnitudeMarks = createMarks({ min: 1, max: 10 }, Units.none, 1);
-  console.log(magnitudeMarks);
 
   const onChange = <K extends keyof QuakeFilter>(key: K, value: QuakeFilter[K]): void => {
     dispatch.changeQuakeFormValue({ key, value });
