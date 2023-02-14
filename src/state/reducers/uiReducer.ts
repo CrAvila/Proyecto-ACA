@@ -1,14 +1,15 @@
-import { QuakeFormState, UIState } from 'types/state';
+import { UIState } from 'types/state';
 import { FieldChange } from 'types/util';
+import { QuakeFilter } from 'types/api/request';
 
 export const changeDrawerForm = (s: UIState, open: boolean): UIState => {
   s.layerForm.open = open;
   return s;
 };
 
-export const changeQuakeFormValue = <K extends keyof QuakeFormState>(
+export const changeQuakeFormValue = <K extends keyof QuakeFilter>(
   s: UIState,
-  update: FieldChange<QuakeFormState, K>
+  update: FieldChange<QuakeFilter, K>
 ): UIState => {
   const form = s.quakeForm.data;
   form[update.key] = update.value;

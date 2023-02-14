@@ -24,6 +24,9 @@ export function DrawerForm(): JSX.Element {
       extra={
         <Space>
           <Button onClick={onClose}>Cancel</Button>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
         </Space>
       }
     >

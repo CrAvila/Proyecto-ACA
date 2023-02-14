@@ -1,20 +1,10 @@
 import { RematchDispatch, RematchRootState } from '@rematch/core';
 import { RootModel } from 'state/models';
+import { QuakeFilter } from './api/request';
 
 export type User = {
   name: string;
   pictureUrl: string;
-};
-
-export type QuakeFormState = {
-  dateMin?: Date;
-  dateMax?: Date;
-  magnitudeMin?: number;
-  magnitudeMax?: number;
-  intensityMin?: number;
-  intensityMax?: number;
-  depthMin?: number;
-  depthMax?: number;
 };
 
 export type UserState = {
@@ -29,7 +19,7 @@ export type UIState = {
   };
   quakeForm: {
     rangePercent: number;
-    data: QuakeFormState;
+    data: QuakeFilter;
   };
 };
 

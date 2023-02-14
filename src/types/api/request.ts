@@ -1,6 +1,6 @@
 export type Range<T> = {
-  min: T | undefined;
-  max: T | undefined;
+  min: T;
+  max: T;
 };
 
 export type QuakeSort =
@@ -15,9 +15,9 @@ export type QuakeSort =
 export type QuakeFilter = {
   date?: Range<string>;
   sort: QuakeSort;
-  magnitude?: Range<number>;
-  depth?: Range<number>;
-  intensity?: Range<number>;
+  magnitude: Range<number>;
+  depth: Range<number>;
+  intensity: Range<number>;
   latitude?: Range<number>;
   longitude?: Range<number>;
   descLike: string;

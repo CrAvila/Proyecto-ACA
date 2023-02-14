@@ -9,7 +9,16 @@ const initialState: UIState = {
   },
   quakeForm: {
     rangePercent: 5,
-    data: {}
+    data: {
+      descLike: '',
+      sort: 'Id',
+      depth: {
+        min: 0,
+        max: 78
+      },
+      intensity: { min: 1, max: 5 },
+      magnitude: { min: 1, max: 5 }
+    }
   }
 };
 
