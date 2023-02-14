@@ -28,9 +28,7 @@ export class ErrorBoundary extends Component<PropsWithChildren, State> {
   }
 
   render(): ReactNode {
-    console.log(this.state);
     if (this.state.hasError) {
-      console.log('p[uta');
       return (
         <Result
           status="500"

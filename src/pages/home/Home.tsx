@@ -1,9 +1,11 @@
-import { World } from 'components';
+import { World, ControlBar, DrawerForm } from 'components';
 
 export function Home(): JSX.Element {
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
+      <ControlBar />
       <World />
+      <DrawerForm />
     </div>
   );
 }

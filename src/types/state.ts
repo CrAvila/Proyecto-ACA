@@ -1,5 +1,10 @@
 import { RematchDispatch, RematchRootState } from '@rematch/core';
 import { RootModel } from 'state/models';
+import { QuakeFilter } from './api/request';
+import { Quake } from './api/responses';
+
+export type Dispatch = RematchDispatch<RootModel>;
+export type RootState = RematchRootState<RootModel>;
 
 export type User = {
   name: string;
@@ -11,5 +16,23 @@ export type UserState = {
   user: User;
 };
 
-export type Dispatch = RematchDispatch<RootModel>;
-export type RootState = RematchRootState<RootModel>;
+export type UIState = {
+  layerForm: {
+    open: boolean;
+    loading: boolean;
+  };
+  quakeForm: {
+    rangePercent: number;
+    data: QuakeFilter;
+  };
+};
+
+export type Layer<T> = {
+  name: string;
+  visible: boolean;
+  data: T[];
+};
+
+export type LayerState = {
+  quakeLayers: Record<string, Layer<Quake>>;
+};
