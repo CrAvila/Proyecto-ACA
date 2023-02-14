@@ -1,6 +1,6 @@
 import { createModel } from '@rematch/core';
 import { UIState } from 'types/state';
-import { changeDrawerForm, changeQuakeFormValue, changeRadiusScale } from 'state/reducers';
+import * as UIReducer from 'state/reducers';
 
 const initialState: UIState = {
   layerForm: {
@@ -9,6 +9,9 @@ const initialState: UIState = {
   },
   quakeForm: {
     rangePercent: 5,
+    layerInfo: {
+      color: '#ffffff'
+    },
     data: {
       descLike: '',
       sort: 'Id',
@@ -24,9 +27,5 @@ const initialState: UIState = {
 
 export const uiModel = createModel()({
   state: initialState,
-  reducers: {
-    changeDrawerForm,
-    changeQuakeFormValue,
-    changeRadiusScale
-  }
+  reducers: UIReducer
 });

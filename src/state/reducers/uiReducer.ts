@@ -10,15 +10,16 @@ export const changeDrawerForm = (s: UIState, open: boolean): UIState => {
 export const changeQuakeFormValue = <K extends keyof QuakeFilter>(
   s: UIState,
   update: FieldChange<QuakeFilter, K>
-): UIState => {
+): void => {
   const form = s.quakeForm.data;
   form[update.key] = update.value;
-  return s;
 };
 
-export const changeRadiusScale = (s: UIState, percent: number): UIState => {
-  console.log(percent);
+export const changeRadiusScale = (s: UIState, percent: number): void => {
   const fix = Math.max(0, percent);
   s.quakeForm.rangePercent = Math.min(fix, 100);
-  return s;
+};
+
+export const changeLayerColor = (s: UIState, color: string): void => {
+  s.quakeForm.layerInfo.color = color;
 };

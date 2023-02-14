@@ -1,8 +1,14 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { Col, Row, Slider, Typography } from 'antd';
+import { Col, Form, Input, Slider, Typography, FormRule, Button } from 'antd';
 import { scaleMarks, createMarks } from 'utils/slider';
 import { Units } from 'utils/Unit';
 import { QuakeFilter } from 'types/api/request';
+import { ColorPicker } from '../colorPicker/ColorPicker';
+import './Form.scss';
+
+type QuakeFormValues = {
+  layerName: string;
+};
 
 const earthMaxRadiusKm = 6_378;
 
@@ -18,9 +24,22 @@ function formatToKm(percent: number): string {
   return `${mapped} Km`;
 }
 
+const text = {
+  layerName: 'Layer name',
+  layerColor: 'Layer color'
+};
+
+const layerNameRules: FormRule[] = [
+  {
+    required: true,
+    min: 3
+  }
+];
+
 export function QuakeForm(): JSX.Element {
   const state = useAppSelector((s) => s.ui.quakeForm);
-  const dispatch = useAppDispatch().ui;
+  const quakeLayer = useAppSelector((s) => s.layers.quakeLayers);
+  const { ui, layers } = useAppDispatch();
 
   const { data, rangePercent } = state;
   const { depth, date, sort, magnitude } = data;
@@ -29,11 +48,34 @@ export function QuakeForm(): JSX.Element {
   const magnitudeMarks = createMarks({ min: 1, max: 10 }, Units.none, 1);
 
   const onChange = <K extends keyof QuakeFilter>(key: K, value: QuakeFilter[K]): void => {
-    dispatch.changeQuakeFormValue({ key, value });
+    ui.changeQuakeFormValue({ key, value });
+  };
+  const onSubmit = (data: QuakeFormValues): void => {
+    layers.loadLayer(data.layerName);
+  };
+
+  const onClose = (): void => {
+    ui.changeDrawerForm(false);
+  };
+
+  const values = {
+    layerName: `Layer ${Object.entries(quakeLayer).length}`
   };
 
   return (
-    <Row gutter={16}>
+    <Form initialValues={values} requiredMark={false} onFinish={onSubmit} layout="vertical">
+      <div className="form-head">
+        <Button onClick={onClose}>Cancel</Button>
+        <Button type="primary" htmlType="submit">
+          Add
+        </Button>
+      </div>
+      <Form.Item name="layerName" label={text.layerName} rules={layerNameRules}>
+        <Input placeholder={text.layerName} type="text" maxLength={40} />
+      </Form.Item>
+      <Form.Item label={text.layerColor}>
+        <ColorPicker color="#fafafa" onChange={ui.changeLayerColor} />
+      </Form.Item>
       <Col span={24}>
         <Typography.Text type="secondary">
           Most Earth quakes occur at depths of 30-50 km, set this slider Most earthquakes occur at
@@ -51,7 +93,7 @@ export function QuakeForm(): JSX.Element {
           max={100}
           defaultValue={rangePercent}
           marks={scaleMarks}
-          onAfterChange={dispatch.changeRadiusScale}
+          onAfterChange={ui.changeRadiusScale}
         />
       </Col>
       <Col span={24}>
@@ -86,6 +128,6 @@ export function QuakeForm(): JSX.Element {
           }
         />
       </Col>
-    </Row>
+    </Form>
   );
 }
