@@ -1,0 +1,14 @@
+.control-bar {
+  position: absolute;
+  padding: 1.5em 1em;
+  border-radius: 15px;
+  left: 16px;
+  top: 16px;
+  display: flex;
+  gap: 0.5em;
+  z-index: 30;
+
+  &:hover {
+    background-color: rgba(241, 232, 232, 0.18);
+  }
+}
