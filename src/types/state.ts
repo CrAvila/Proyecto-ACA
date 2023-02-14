@@ -23,12 +23,16 @@ export type UIState = {
   };
   quakeForm: {
     rangePercent: number;
+    layerInfo: {
+      color: string;
+    };
     data: QuakeFilter;
   };
 };
 
 export type Layer<T> = {
   name: string;
+  color: string;
   visible: boolean;
   data: T[];
 };

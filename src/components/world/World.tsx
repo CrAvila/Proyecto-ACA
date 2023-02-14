@@ -1,39 +1,34 @@
 import Globe from 'react-globe.gl';
-import colorbrewer from 'colorbrewer';
-import { useState, useEffect } from 'react';
+import { Quake } from 'types/api/responses';
+import { useAppSelector } from 'hooks';
+import * as Layer from 'utils/layer';
 
-export function World(props: any): JSX.Element {
-  const [equakes, setEquakes] = useState<any[]>([]);
+export function World(): JSX.Element {
+  const layers = useAppSelector((s) => s.layers.quakeLayers);
+  const aggregated: Quake[] = [];
+  const layerStops: number[] = [];
+  for (const layer of Object.values(layers)) {
+    const index = aggregated.push(...layer.data);
+    layerStops.push(index);
+  }
 
-  useEffect(() => {
-    // load data
-    fetch('//earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson').then(res => res.json())
-      .then(({ features }) => setEquakes(features));
-  }, []);
+  const layersData = Object.values(layers);
+  console.log(layerStops);
 
-  const A = 0;
-  const B = 100;
-
+  const colorFunc = Layer.getLayerColorFunc(aggregated, layerStops);
   // Create the color scale
-
-  // Define a function that takes a number and returns the corresponding hex color
-  const getColor = colorbrewer.Reds;
-  console.log(getColor);
 
   return (
     <Globe
-      globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-      hexBinPointsData={equakes}
-      hexBinPointLat={(d:any) => d.geometry.coordinates[1]}
-      hexBinPointLng={(d:any) => d.geometry.coordinates[0]}
-      hexBinPointWeight={(d:any) => d.properties.mag}
-      hexAltitude={({ sumWeight }) => sumWeight * 0.0025}
-      hexTopColor={(d:any) => getColor[3][0]}
-      hexSideColor={(d:any) => getColor[4][0]}
-      hexLabel={(d:any): string => `
-        <b>${d.points.length}</b> earthquakes in the past month:<ul><li>
-          ${d.points.slice().sort((a: { properties: { mag: number; }; }, b: { properties: { mag: number; }; }) => b.properties.mag - a.properties.mag).map((d: { properties: { title: any; }; }) => d.properties.title).join('</li><li>')}
-        </li></ul>
+      globeImageUrl="//unpkg.com/three-globe/example/img/earth-day.jpg"
+      pointsData={aggregated}
+      pointLat={Layer.layerLat}
+      pointLng={Layer.layerLng}
+      pointAltitude={Layer.layerHeight}
+      pointRadius={0.04}
+      pointColor={(o: object): string => colorFunc(o, layersData)}
+      pointLabel={(d: object): string => `
+        <b>${(d as Quake).location}</b>
     `}
     />
   );
