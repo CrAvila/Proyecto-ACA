@@ -1,12 +1,17 @@
 .layout {
-  width: 100vh;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: #fafafa;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   overflow-x: auto;
+
+  .layout-header {
+    width: 100%;
+  }
 }
 
 #root{
