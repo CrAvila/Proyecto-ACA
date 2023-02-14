@@ -5,6 +5,8 @@ import { Units } from 'utils/Unit';
 import { QuakeFilter } from 'types/api/request';
 import { ColorPicker } from '../colorPicker/ColorPicker';
 import './Form.scss';
+import { useLayoutEffect } from 'react';
+import { useForm } from 'antd/es/form/Form';
 
 type QuakeFormValues = {
   layerName: string;
@@ -40,7 +42,7 @@ export function QuakeForm(): JSX.Element {
   const state = useAppSelector((s) => s.ui.quakeForm);
   const quakeLayer = useAppSelector((s) => s.layers.quakeLayers);
   const { ui, layers } = useAppDispatch();
-
+  const [form] = useForm();
   const { data, rangePercent } = state;
   const { depth, date, sort, magnitude } = data;
   const newMaxDepth = Math.trunc(mapToExponential(rangePercent));
@@ -58,12 +60,19 @@ export function QuakeForm(): JSX.Element {
     ui.changeDrawerForm(false);
   };
 
-  const values = {
-    layerName: `Layer ${Object.entries(quakeLayer).length}`
-  };
+  const newName = `Layer ${Object.entries(quakeLayer).length}`;
+  useLayoutEffect(() => {
+    form.setFieldValue('layerName', newName);
+  }, [newName]);
 
   return (
-    <Form initialValues={values} requiredMark={false} onFinish={onSubmit} layout="vertical">
+    <Form
+      initialValues={{ layerName: newName }}
+      requiredMark={false}
+      onFinish={onSubmit}
+      form={form}
+      layout="vertical"
+    >
       <div className="form-head">
         <Button onClick={onClose}>Cancel</Button>
         <Button type="primary" htmlType="submit">

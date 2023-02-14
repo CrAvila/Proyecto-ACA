@@ -1,5 +1,4 @@
 import Globe from 'react-globe.gl';
-import colorbrewer from 'colorbrewer';
 import { Quake } from 'types/api/responses';
 import { useAppSelector } from 'hooks';
 import * as Layer from 'utils/layer';
@@ -7,18 +6,17 @@ import * as Layer from 'utils/layer';
 export function World(): JSX.Element {
   const layers = useAppSelector((s) => s.layers.quakeLayers);
   const aggregated: Quake[] = [];
+  const layerStops: number[] = [];
   for (const layer of Object.values(layers)) {
-    aggregated.push(...layer.data);
+    const index = aggregated.push(...layer.data);
+    layerStops.push(index);
   }
 
-  console.log(aggregated);
-  const A = 0;
-  const B = 100;
+  const layersData = Object.values(layers);
+  console.log(layerStops);
 
+  const colorFunc = Layer.getLayerColorFunc(aggregated, layerStops);
   // Create the color scale
-
-  // Define a function that takes a number and returns the corresponding hex color
-  const getColor = colorbrewer.Reds;
 
   return (
     <Globe
@@ -28,8 +26,8 @@ export function World(): JSX.Element {
       pointLng={Layer.layerLng}
       pointAltitude={Layer.layerHeight}
       pointRadius={0.04}
-      pointColor={(o: object) => '#ffffff'}
-      pointLabel={(d:any): string => `
+      pointColor={(o: object): string => colorFunc(o, layersData)}
+      pointLabel={(d: object): string => `
         <b>${(d as Quake).location}</b>
     `}
     />
