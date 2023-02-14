@@ -8,7 +8,7 @@ import './App.scss';
 export function App(): JSX.Element {
   return (
     <Layout className="layout">
-      <Layout.Header>
+      <Layout.Header className="layout-header">
         <img src={logo} alt="GAF energy logo" className="logo" width={40} />
       </Layout.Header>
       <Layout.Content>
@@ -16,9 +16,6 @@ export function App(): JSX.Element {
           <Outlet />
         </ErrorBoundary>
       </Layout.Content>
-      <Layout.Footer>
-        <p>footer</p>
-      </Layout.Footer>
     </Layout>
   );
 }
