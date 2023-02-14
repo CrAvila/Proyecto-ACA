@@ -3,9 +3,8 @@ import { CapClient } from 'api/capClient';
 import { Dispatch, RootState } from 'types/state';
 
 type LayerDispatch = Dispatch['layers'];
-export async function loadLayer(this: object, payload: QuakeFilter, s: any): Promise<void> {
+export async function loadLayer(this: object, payload: QuakeFilter, s: any, name: string): Promise<void> {
   const that = this as LayerDispatch;
-  console.log(s);
   const ss = s as RootState;
   const token = ss.user.token;
   const client = new CapClient(token || 'test-api-key');
@@ -13,7 +12,7 @@ export async function loadLayer(this: object, payload: QuakeFilter, s: any): Pro
   if (Array.isArray(rest)) {
     console.log('success');
     that.addQuakeLayer({
-      name: 'test-layer',
+      name,
       data: rest,
       visible: true
     });
