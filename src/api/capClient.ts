@@ -1,5 +1,6 @@
 import type { AxiosInstance, AxiosResponse } from 'axios';
 import axios from 'axios';
+import { stringify } from 'qs';
 import { QuakeFilter } from 'types/api/request';
 import { Quake } from 'types/api/responses';
 
@@ -11,7 +12,7 @@ export class CapClient {
     this.axios = axios.create({
       baseURL: this.baseUrl,
       paramsSerializer: {
-        dots: true
+        serialize: (params) => stringify(params, { skipNulls: true })
       },
       headers: {
         'CAP-API-KEY': this.token

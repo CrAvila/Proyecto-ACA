@@ -13,12 +13,11 @@ export type QuakeSort =
   | 'Intensity';
 
 export type QuakeFilter = {
-  date?: Range<string>;
+  date: Range<string | undefined>;
   sort: QuakeSort;
   magnitude: Range<number>;
   depth: Range<number>;
   intensity: Range<number>;
   latitude?: Range<number>;
   longitude?: Range<number>;
-  descLike: string;
 };
