@@ -1,4 +1,4 @@
-import { UIState } from 'types/state';
+import { Layer, UIState } from 'types/state';
 import { FieldChange } from 'types/util';
 import { QuakeFilter } from 'types/api/request';
 import { RangePickerProps } from 'antd/es/date-picker';
@@ -28,4 +28,8 @@ export const changeLayerColor = (s: UIState, color: string): void => {
 
 export const setQuake = (s: UIState, quake: Quake | undefined): void => {
   s.selected = quake;
+};
+
+export const setLayer = (s: UIState, layer: Layer<Quake> | undefined): void => {
+  s.currentLayer = layer;
 };

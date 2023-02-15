@@ -1,4 +1,4 @@
-import { World, ControlBar, DrawerForm, LayerList, QuakeModal } from 'components';
+import { World, ControlBar, DrawerForm, LayerList, QuakeModal, LayerModal } from 'components';
 
 export function Home(): JSX.Element {
   return (
@@ -8,6 +8,7 @@ export function Home(): JSX.Element {
       <World />
       <DrawerForm />
       <QuakeModal />
+      <LayerModal />
     </div>
   );
 }
