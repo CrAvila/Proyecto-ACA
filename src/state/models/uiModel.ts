@@ -6,7 +6,7 @@ import {
   changeDrawerForm,
   changeRadiusScale,
   setQuake,
-  setLayer
+  setLayer, changeSort,
 } from 'state/reducers';
 
 const initialState: UIState = {
@@ -24,7 +24,7 @@ const initialState: UIState = {
         max: undefined,
         min: undefined
       },
-      sort: 'Id',
+      sort: 'Date',
       depth: {
         min: 0,
         max: 78
@@ -45,6 +45,7 @@ export const uiModel = createModel()({
     changeDrawerForm,
     changeRadiusScale,
     setQuake,
-    setLayer
+    setLayer,
+    changeSort
   }
 });
