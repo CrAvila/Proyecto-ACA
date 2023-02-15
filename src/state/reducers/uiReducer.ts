@@ -1,6 +1,7 @@
 import { UIState } from 'types/state';
 import { FieldChange } from 'types/util';
 import { QuakeFilter } from 'types/api/request';
+import { RangePickerProps } from 'antd/es/date-picker';
 
 export const changeDrawerForm = (s: UIState, open: boolean): UIState => {
   s.layerForm.open = open;
