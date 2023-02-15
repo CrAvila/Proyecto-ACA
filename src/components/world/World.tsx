@@ -2,25 +2,27 @@ import Globe from 'react-globe.gl';
 import { Quake } from 'types/api/responses';
 import { useAppSelector } from 'hooks';
 import * as Layer from 'utils/layer';
+import earth from 'assets/textures/8k_earth_daymap.jpg';
 
 export function World(): JSX.Element {
   const layers = useAppSelector((s) => s.layers.quakeLayers);
   const aggregated: Quake[] = [];
   const layerStops: number[] = [];
   for (const layer of Object.values(layers)) {
+    if (!layer.visible) {
+      continue;
+    }
     const index = aggregated.push(...layer.data);
     layerStops.push(index);
   }
 
   const layersData = Object.values(layers);
-  console.log(layerStops);
-
   const colorFunc = Layer.getLayerColorFunc(aggregated, layerStops);
   // Create the color scale
 
   return (
     <Globe
-      globeImageUrl="//unpkg.com/three-globe/example/img/earth-day.jpg"
+      globeImageUrl={earth}
       pointsData={aggregated}
       pointLat={Layer.layerLat}
       pointLng={Layer.layerLng}

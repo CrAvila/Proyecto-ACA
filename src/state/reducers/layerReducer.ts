@@ -6,3 +6,18 @@ export const addQuakeLayer = (s: LayerState, layer: Layer<Quake>): LayerState =>
   copy.quakeLayers[layer.name] = layer;
   return copy;
 };
+
+export const removeLayer = (s: LayerState, layerName: string): LayerState => {
+  const copy = cloneDeep(s);
+  delete copy.quakeLayers[layerName];
+  return copy;
+};
+
+export const toggleVisible = (s: LayerState, layerName: string): LayerState => {
+  const copy = cloneDeep(s);
+  const layer = copy.quakeLayers[layerName];
+  if (layer) {
+    layer.visible = !layer.visible;
+  }
+  return copy;
+};

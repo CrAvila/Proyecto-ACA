@@ -1,0 +1,39 @@
+.layer-list-overlay {
+  position: absolute;
+  padding: 0 1em;
+  border-radius: 15px;
+  left: 16px;
+  top: 96px;
+  z-index: 30;
+  background-color: rgba(241, 232, 232, 0.18);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .color-class {
+    width: 10px;
+    height: 10px;
+    padding: 0.5em 1em;
+    margin: 10px;
+
+    &::after {
+      content: ' ';
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .layer-list-item {
+    border-radius: 15px;
+
+    margin: 0.5em 0;
+    padding: 1em;
+
+    p {
+      margin: 0;
+    }
+
+    &:hover {
+      background-color: rgba(241, 232, 232, 0.8);
+    }
+  }
+}
