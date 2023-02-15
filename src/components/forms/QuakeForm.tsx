@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { Col, Form, Input, Slider, Typography, FormRule, Button, DatePicker } from 'antd';
-import { scaleMarks, createMarks } from 'utils/slider';
-import { Units } from 'utils/Unit';
+import { Button, Col, DatePicker, Form, FormRule, Input, Slider, Typography } from 'antd';
+import { createMarks, scaleMarks } from 'utils/slider';
+import { formatToUnit, Units } from 'utils/Unit';
 import { QuakeFilter } from 'types/api/request';
 import { ColorPicker } from '../colorPicker/ColorPicker';
 import { useLayoutEffect } from 'react';
@@ -129,7 +129,7 @@ export function QuakeForm(): JSX.Element {
       </Col>
       <Col span={24}>
         <Typography.Title level={4} type="secondary">
-          Depth {depth.min} - {depth.max}
+          Depth {formatToUnit(depth.min, Units.km)} to {formatToUnit(depth.max, Units.km)}
         </Typography.Title>
       </Col>
       <Col span={22} offset={1}>
