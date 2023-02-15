@@ -4,7 +4,8 @@ import {
   changeLayerColor,
   changeQuakeFormValue,
   changeDrawerForm,
-  changeRadiusScale
+  changeRadiusScale,
+  setQuake
 } from 'state/reducers';
 
 const initialState: UIState = {
@@ -30,7 +31,8 @@ const initialState: UIState = {
       intensity: { min: 1, max: 5 },
       magnitude: { min: 1, max: 5 }
     }
-  }
+  },
+  selected: undefined
 };
 
 export const uiModel = createModel()({
@@ -39,6 +41,7 @@ export const uiModel = createModel()({
     changeLayerColor,
     changeQuakeFormValue,
     changeDrawerForm,
-    changeRadiusScale
+    changeRadiusScale,
+    setQuake
   }
 });

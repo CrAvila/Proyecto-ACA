@@ -1,22 +1,28 @@
-import { Layout } from 'antd';
-import logo from 'assets/react.svg';
-import { Link, Outlet } from 'react-router-dom';
+import { Layout, Menu } from 'antd';
+import logo from 'assets/cap.png';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from 'components';
 import 'antd/dist/reset.css';
 import './App.scss';
 
 export function App(): JSX.Element {
+  const route = useLocation();
   return (
     <Layout className="layout">
       <Layout.Header className="layout-header">
         <div className="navbar">
-        <img src={logo} alt="CAP logo" className="logo" width={40} />
-          <div className='logo-title'>CAP</div>
-           <ul className="nav-links">
+          <img src={logo} alt="CAP logo" className="logo" width={100} />
+          <Menu theme="dark" mode="horizontal" selectedKeys={[route.pathname]}>
+            <Menu.Item key="/">
               <Link to="/">Home</Link>
+            </Menu.Item>
+            <Menu.Item key="/charts">
               <Link to="/charts">Charts</Link>
+            </Menu.Item>
+            <Menu.Item key="/about">
               <Link to="/about">About</Link>
-           </ul>
+            </Menu.Item>
+          </Menu>
         </div>
       </Layout.Header>
       <Layout.Content>

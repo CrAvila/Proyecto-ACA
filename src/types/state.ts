@@ -28,6 +28,7 @@ export type UIState = {
     };
     data: QuakeFilter;
   };
+  selected: Quake | undefined;
 };
 
 export type Layer<T> = {

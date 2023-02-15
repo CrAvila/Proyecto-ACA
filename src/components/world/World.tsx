@@ -1,39 +1,18 @@
-import Globe from 'react-globe.gl';
+import Globe, { GlobeMethods } from 'react-globe.gl';
 import { Quake } from 'types/api/responses';
-import { useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import * as Layer from 'utils/layer';
-import React from 'react';
-import * as THREE from 'three'
-
-const { useEffect, useRef} = React;
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
 import earth from 'assets/textures/8k_earth_daymap.jpg';
+import clouds from 'assets/textures/fair_clouds_4k.png';
 
+const CLOUDS_ROTATION_SPEED = -0.006; // deg/frame
+const CLOUDS_ALT = 0.004;
 export function World(): JSX.Element {
-  const globeEl = useRef();
-
-  useEffect(() => {
-
-    const globe = globeEl.current as unknown as any;
-
-    const CLOUDS_IMG_URL = 'src/assets/textures/fair_clouds_4k.png'; // from https://github.com/turban/webgl-earth
-    const CLOUDS_ALT = 0.004;
-    const CLOUDS_ROTATION_SPEED = -0.006; // deg/frame
-  
-    new THREE.TextureLoader().load(CLOUDS_IMG_URL, cloudsTexture => {
-      const clouds = new THREE.Mesh(
-        new THREE.SphereGeometry(globe.getGlobeRadius() * (1 + CLOUDS_ALT), 75, 75),
-        new THREE.MeshPhongMaterial({ map: cloudsTexture, transparent: true})
-      );
-      globe.scene().add(clouds);
-  
-      (function rotateClouds() {
-        clouds.rotation.y += CLOUDS_ROTATION_SPEED * Math.PI / 180;
-        requestAnimationFrame(rotateClouds);
-      })();
-    });
-  }, []);
-
+  const globeEl = useRef<GlobeMethods>();
   const layers = useAppSelector((s) => s.layers.quakeLayers);
+  const dispatch = useAppDispatch();
   const aggregated: Quake[] = [];
   const layerStops: number[] = [];
   for (const layer of Object.values(layers)) {
@@ -46,16 +25,38 @@ export function World(): JSX.Element {
 
   const layersData = Object.values(layers).filter((l) => l.visible);
   const colorFunc = Layer.getLayerColorFunc(aggregated, layerStops);
-  // Create the color scale
 
+  const onGlobeReady = () => {
+    const globe = globeEl.current;
+    if (!globe) {
+      return;
+    }
+
+    new THREE.TextureLoader().load(clouds, cloudsTexture => {
+      const clouds = new THREE.Mesh(
+        new THREE.SphereGeometry(globe.getGlobeRadius() * (1 + CLOUDS_ALT), 75, 75),
+        new THREE.MeshPhongMaterial({ map: cloudsTexture, transparent: true })
+      );
+      globe.scene().add(clouds);
+
+      (function rotateClouds() {
+        clouds.rotation.y += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
+        requestAnimationFrame(rotateClouds);
+      })();
+    });
+  };
 
   return (
     <Globe
       ref={globeEl}
-      animateIn={false}
+      animateIn={true}
+      onGlobeReady={onGlobeReady}
       globeImageUrl={earth}
       pointsData={aggregated}
       pointLat={Layer.layerLat}
+      onPointClick={(b: object): void => {
+        dispatch.ui.setQuake(b as Quake);
+      }}
       pointLng={Layer.layerLng}
       pointAltitude={Layer.layerHeight}
       pointRadius={0.04}
