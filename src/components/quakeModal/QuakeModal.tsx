@@ -1,6 +1,6 @@
 import { Col, Divider, Modal, Row, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { quakeLocString } from 'utils/Unit';
+import { formatToUnit, quakeLocString, Units } from 'utils/Unit';
 
 export function QuakeModal(): JSX.Element {
   const selected = useAppSelector((s) => s.ui.selected);
@@ -21,6 +21,7 @@ export function QuakeModal(): JSX.Element {
       onCancel={onClose}
       footer={null}
       width="550px"
+      className="quake-modal"
     >
       <Typography.Title level={2}>Event</Typography.Title>
       <Row gutter={16}>
@@ -57,7 +58,7 @@ export function QuakeModal(): JSX.Element {
           <Typography.Text>Event depth</Typography.Text>
         </Col>
         <Col>
-          <Typography.Title level={4}>{selected?.depth}</Typography.Title>
+          <Typography.Title level={4}>{formatToUnit(selected?.depth, Units.km)}</Typography.Title>
         </Col>
       </Row>
       <Divider />

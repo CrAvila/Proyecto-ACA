@@ -2,7 +2,6 @@ import { Button, List, Typography } from 'antd';
 import { DeleteOutlined, EyeFilled, EyeInvisibleFilled } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import './LayerList.scss';
-import { MouseEvent } from 'react';
 
 export type LayerListProps = {
   mode: 'overlay' | 'normal';
@@ -19,10 +18,10 @@ export function LayerList(props: LayerListProps): JSX.Element | null {
   return (
     <List className={`layer-list-${mode}`}>
       {entries.map((values) => {
-        const onClick = (evt: MouseEvent): void => {
+        const onClick = (): void => {
           dispatch.layers.removeLayer(values.name);
         };
-        const onVisibleToggle = (evt: MouseEvent): void => {
+        const onVisibleToggle = (): void => {
           dispatch.layers.toggleVisible(values.name);
         };
 
