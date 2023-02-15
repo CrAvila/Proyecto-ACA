@@ -16,7 +16,7 @@ export function World(): JSX.Element {
     layerStops.push(index);
   }
 
-  const layersData = Object.values(layers);
+  const layersData = Object.values(layers).filter((l) => l.visible);
   const colorFunc = Layer.getLayerColorFunc(aggregated, layerStops);
   // Create the color scale
 

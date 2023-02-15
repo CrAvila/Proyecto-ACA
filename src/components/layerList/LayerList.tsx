@@ -28,11 +28,10 @@ export function LayerList(props: LayerListProps): JSX.Element | null {
         const Icon = values.visible ? <EyeFilled /> : <EyeInvisibleFilled />;
         const hideAction = <Button icon={Icon} onClick={onVisibleToggle}></Button>;
         return (
-          <List.Item key={values.name} className="layer-list-item" actions={[action, hideAction]}>
+          <List.Item key={values.name} className="layer-list-item" actions={[hideAction, action]}>
             <Typography.Title level={5}>
-              {values.name}
-              <span style={{ background: values.color }} className="color-class" />{' '}
-              {values.data.length} elements
+              <span style={{ background: values.color }} className="color-class" />
+              {values.name} [{values.data.length} elements]
             </Typography.Title>
           </List.Item>
         );

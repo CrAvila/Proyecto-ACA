@@ -12,7 +12,11 @@ export class CapClient {
     this.axios = axios.create({
       baseURL: this.baseUrl,
       paramsSerializer: {
-        serialize: (params) => stringify(params, { skipNulls: true })
+        serialize: (params) =>
+          stringify(params, {
+            skipNulls: true,
+            allowDots: true
+          })
       },
       headers: {
         'CAP-API-KEY': this.token
@@ -28,7 +32,11 @@ export class CapClient {
     const url = `/Quake`;
     try {
       const response = await this.axios.get<Quake[]>(url, {
-        params: filter
+        params: {
+          page: 0,
+          size: 0,
+          ...filter
+        }
       });
       if (this.wasSuccess(response)) {
         return response.data;
