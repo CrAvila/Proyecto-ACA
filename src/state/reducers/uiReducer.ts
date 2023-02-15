@@ -2,6 +2,7 @@ import { UIState } from 'types/state';
 import { FieldChange } from 'types/util';
 import { QuakeFilter } from 'types/api/request';
 import { RangePickerProps } from 'antd/es/date-picker';
+import { Quake } from '../../types/api/responses';
 
 export const changeDrawerForm = (s: UIState, open: boolean): UIState => {
   s.layerForm.open = open;
@@ -23,4 +24,8 @@ export const changeRadiusScale = (s: UIState, percent: number): void => {
 
 export const changeLayerColor = (s: UIState, color: string): void => {
   s.quakeForm.layerInfo.color = color;
+};
+
+export const setQuake = (s: UIState, quake: Quake | undefined): void => {
+  s.selected = quake;
 };
