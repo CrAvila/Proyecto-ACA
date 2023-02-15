@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { Col, Form, Input, Slider, Typography, FormRule, Button } from 'antd';
+import { Col, Form, Input, Slider, Typography, FormRule, Button, DatePicker } from 'antd';
 import { scaleMarks, createMarks } from 'utils/slider';
 import { Units } from 'utils/Unit';
 import { QuakeFilter } from 'types/api/request';
 import { ColorPicker } from '../colorPicker/ColorPicker';
-import './Form.scss';
 import { useLayoutEffect } from 'react';
 import { useForm } from 'antd/es/form/Form';
+import './Form.scss';
 
 type QuakeFormValues = {
   layerName: string;
@@ -44,10 +44,11 @@ export function QuakeForm(): JSX.Element {
   const { ui, layers } = useAppDispatch();
   const [form] = useForm();
   const { data, rangePercent } = state;
-  const { depth, date, sort, magnitude } = data;
+  const { depth, magnitude, intensity } = data;
   const newMaxDepth = Math.trunc(mapToExponential(rangePercent));
   const depthMarks = createMarks({ min: 0, max: newMaxDepth }, Units.km, newMaxDepth / 5);
   const magnitudeMarks = createMarks({ min: 1, max: 10 }, Units.none, 1);
+  const intensityMarks = createMarks({ min: 1, max: 10 }, Units.none, 1);
 
   const onChange = <K extends keyof QuakeFilter>(key: K, value: QuakeFilter[K]): void => {
     ui.changeQuakeFormValue({ key, value });
@@ -85,6 +86,27 @@ export function QuakeForm(): JSX.Element {
       <Form.Item label={text.layerColor}>
         <ColorPicker color="#fafafa" onChange={ui.changeLayerColor} />
       </Form.Item>
+      <Col span={24}>
+        <Typography.Title level={4} type="secondary">
+          Dates
+        </Typography.Title>
+      </Col>
+      <Col span={22} offset={1}>
+        <DatePicker.RangePicker
+          allowClear
+          showTime={false}
+          allowEmpty={[true, true]}
+          onChange={(c): void => {
+            if (!c) {
+              onChange('date', { min: undefined, max: undefined });
+              return;
+            }
+            const st = c?.[0]?.startOf('day')?.toISOString();
+            const nd = c?.[1]?.endOf('day')?.toISOString();
+            onChange('date', { min: st, max: nd });
+          }}
+        />
+      </Col>
       <Col span={24}>
         <Typography.Text type="secondary">
           Most Earth quakes occur at depths of 30-50 km, set this slider Most earthquakes occur at
@@ -134,6 +156,23 @@ export function QuakeForm(): JSX.Element {
           defaultValue={[1, 5]}
           onAfterChange={(v: [number, number]): void =>
             onChange('magnitude', { min: v[0], max: v[1] })
+          }
+        />
+      </Col>
+      <Col span={24}>
+        <Typography.Title level={4} type="secondary">
+          Intensity {intensity.min} - {intensity.max}
+        </Typography.Title>
+      </Col>
+      <Col span={22} offset={1}>
+        <Slider
+          range
+          min={1}
+          max={10}
+          marks={intensityMarks}
+          defaultValue={[1, 10]}
+          onAfterChange={(v: [number, number]): void =>
+            onChange('intensity', { min: v[0], max: v[1] })
           }
         />
       </Col>

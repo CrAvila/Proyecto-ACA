@@ -6,6 +6,7 @@ import React from 'react';
 import * as THREE from 'three'
 
 const { useEffect, useRef} = React;
+import earth from 'assets/textures/8k_earth_daymap.jpg';
 
 export function World(): JSX.Element {
   const globeEl = useRef();
@@ -36,22 +37,23 @@ export function World(): JSX.Element {
   const aggregated: Quake[] = [];
   const layerStops: number[] = [];
   for (const layer of Object.values(layers)) {
+    if (!layer.visible) {
+      continue;
+    }
     const index = aggregated.push(...layer.data);
     layerStops.push(index);
   }
 
-  const layersData = Object.values(layers);
-  console.log(layerStops);
-
+  const layersData = Object.values(layers).filter((l) => l.visible);
   const colorFunc = Layer.getLayerColorFunc(aggregated, layerStops);
   // Create the color scale
 
 
   return (
     <Globe
-    ref={globeEl}
+      ref={globeEl}
       animateIn={false}
-      globeImageUrl="src/assets/textures/8k_earth_daymap.jpg"
+      globeImageUrl={earth}
       pointsData={aggregated}
       pointLat={Layer.layerLat}
       pointLng={Layer.layerLng}

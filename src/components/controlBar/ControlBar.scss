@@ -7,8 +7,9 @@
   display: flex;
   gap: 0.5em;
   z-index: 30;
+  background-color: rgba(241, 232, 232, 0.18);
 
   &:hover {
-    background-color: rgba(241, 232, 232, 0.18);
+    background-color: rgba(241, 232, 232, 0.30);
   }
 }

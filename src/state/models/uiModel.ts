@@ -1,6 +1,11 @@
 import { createModel } from '@rematch/core';
 import { UIState } from 'types/state';
-import * as UIReducer from 'state/reducers';
+import {
+  changeLayerColor,
+  changeQuakeFormValue,
+  changeDrawerForm,
+  changeRadiusScale
+} from 'state/reducers';
 
 const initialState: UIState = {
   layerForm: {
@@ -13,7 +18,10 @@ const initialState: UIState = {
       color: '#ffffff'
     },
     data: {
-      descLike: '',
+      date: {
+        max: undefined,
+        min: undefined
+      },
       sort: 'Id',
       depth: {
         min: 0,
@@ -27,5 +35,10 @@ const initialState: UIState = {
 
 export const uiModel = createModel()({
   state: initialState,
-  reducers: UIReducer
+  reducers: {
+    changeLayerColor,
+    changeQuakeFormValue,
+    changeDrawerForm,
+    changeRadiusScale
+  }
 });

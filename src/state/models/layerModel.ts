@@ -1,6 +1,6 @@
 import { LayerState } from 'types/state';
 import { createModel } from '@rematch/core';
-import { addQuakeLayer } from '../reducers/layerReducer';
+import { addQuakeLayer, removeLayer, toggleVisible } from '../reducers/layerReducer';
 import { loadLayer } from '../effects/layerEffects';
 import { RootModel } from './index';
 
@@ -11,7 +11,9 @@ const initialState: LayerState = {
 export const layersModel = createModel<RootModel>()({
   state: initialState,
   reducers: {
-    addQuakeLayer
+    addQuakeLayer,
+    removeLayer,
+    toggleVisible
   },
   effects: {
     loadLayer
