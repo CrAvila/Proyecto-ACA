@@ -2,6 +2,8 @@
 
 This is the web client for the CAP API
 
+https://flare.sovize.com
+
 ## features:
  - Add multiple layer with custom color
  - Filter Quake events by:
