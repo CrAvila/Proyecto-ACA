@@ -50,7 +50,7 @@ El Salvador está situado en una región de gran actividad sísmica, lo que lo h
 - Mayor concienciación y preparación de la población ante los terremotos, así como una mayor comprensión de la frecuencia, localización e impacto de los terremotos en la región.
 - Una valiosa herramienta para que los organismos interesados o las autoridades de gestión de desastres y el público en general accedan y analicen los datos sobre los sismos en El Salvador.
 
-## Conclusióm
+## Conclusión
 
 El proyecto de mapa interactivo de sismos de El Salvador tiene el potencial de proporcionar información valiosa sobre la frecuencia, la localización y el impacto de los terremotos en la región. Mediante la creación de un mapa completo, en tiempo real y fácil de usar, el proyecto pretende aumentar la concienciación y la preparación ante los terremotos y ayudar a reducir su impacto en El Salvador.
 
