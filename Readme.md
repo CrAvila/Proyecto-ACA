@@ -1,10 +1,6 @@
 # CAP web client
 
-this is the web client for the CAP API
-
-## features:
- - none yet
-
+This is the web client for the CAP API
 
 ## :wrench: Setup:
 1. ```bash
