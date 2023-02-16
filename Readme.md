@@ -2,6 +2,19 @@
 
 This is the web client for the CAP API
 
+## features:
+ - Add multiple layer with custom color
+ - Filter Quake events by:
+   - Date range
+   - Magnitude range
+   - Intensity range
+   - Depth range
+ - Autoresize for depth based on exponential descale
+ - 3D interactive canvas to display layers
+ - Hide / Delete layers
+ - Displays a Quake description on Hoover events
+ - Click on the bar will show a modal with the event information
+
 ## :wrench: Setup:
 1. ```bash
    npm i
@@ -36,7 +49,7 @@ El Salvador está situado en una región de gran actividad sísmica, lo que lo h
 ## Metodología
 
 - Recopilar datos sísmicos históricos de fuentes fiables.
-- Implementar el mapa utilizando tecnologías de cartografía web como NetTopology, ThreeJS/WebGL y Globe.gl. 
+- Implementar el mapa utilizando tecnologías de cartografía web como NetTopology, ThreeJS/WebGL y Globe.gl.
 - Almacenar los datos del terremoto en una base de datos, como PostgreSQL para facilitar su recuperación y manipulación.
 - Desarrollar una interfaz fácil de usar que permita a los usuarios filtrar y clasificar los datos en función de diferentes criterios, como la magnitud, la ubicación y la fecha/hora.
 
