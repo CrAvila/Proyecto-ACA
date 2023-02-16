@@ -4,3 +4,4 @@ export * from './drawerForm/DrawerForm';
 export * from './controlBar/ControlBar';
 export * from './layerList/LayerList';
 export * from './quakeModal/QuakeModal';
+export * from './layerModal/LayerModal';

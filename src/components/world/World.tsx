@@ -2,7 +2,7 @@ import Globe, { GlobeMethods } from 'react-globe.gl';
 import { Quake } from 'types/api/responses';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import * as Layer from 'utils/layer';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import * as THREE from 'three';
 import earth from 'assets/textures/8k_earth_daymap.jpg';
 import clouds from 'assets/textures/fair_clouds_4k.png';
@@ -26,7 +26,7 @@ export function World(): JSX.Element {
   const layersData = Object.values(layers).filter((l) => l.visible);
   const colorFunc = Layer.getLayerColorFunc(aggregated, layerStops);
 
-  const onGlobeReady = () => {
+  const onGlobeReady = (): void => {
     const globe = globeEl.current;
     if (!globe) {
       return;

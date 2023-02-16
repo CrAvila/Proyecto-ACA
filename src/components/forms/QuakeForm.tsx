@@ -1,8 +1,8 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { Col, Form, Input, Slider, Typography, FormRule, Button, DatePicker } from 'antd';
-import { scaleMarks, createMarks } from 'utils/slider';
-import { Units } from 'utils/Unit';
-import { QuakeFilter } from 'types/api/request';
+import { Button, Col, DatePicker, Form, FormRule, Input, Select, Slider, Typography } from 'antd';
+import { createMarks, scaleMarks } from 'utils/slider';
+import { formatToUnit, Units } from 'utils/Unit';
+import { QuakeFilter, QuakeSort } from 'types/api/request';
 import { ColorPicker } from '../colorPicker/ColorPicker';
 import { useLayoutEffect } from 'react';
 import { useForm } from 'antd/es/form/Form';
@@ -44,7 +44,7 @@ export function QuakeForm(): JSX.Element {
   const { ui, layers } = useAppDispatch();
   const [form] = useForm();
   const { data, rangePercent } = state;
-  const { depth, magnitude, intensity } = data;
+  const { depth, magnitude, intensity, sort } = data;
   const newMaxDepth = Math.trunc(mapToExponential(rangePercent));
   const depthMarks = createMarks({ min: 0, max: newMaxDepth }, Units.km, newMaxDepth / 5);
   const magnitudeMarks = createMarks({ min: 1, max: 10 }, Units.none, 1);
@@ -82,6 +82,20 @@ export function QuakeForm(): JSX.Element {
       </div>
       <Form.Item name="layerName" label={text.layerName} rules={layerNameRules}>
         <Input placeholder={text.layerName} type="text" maxLength={40} />
+      </Form.Item>
+      <Form.Item label="Order by">
+        <Select<QuakeSort>
+          onChange={(e): void => {
+            ui.changeSort(e);
+          }}
+          value={sort}
+        >
+          <Select.Option key="Magnitude">Magnitude</Select.Option>
+          <Select.Option key="Date">Date</Select.Option>
+          <Select.Option key="Depth">Depth</Select.Option>
+          <Select.Option key="Intensity">Intensity</Select.Option>
+          <Select.Option key="Id">None</Select.Option>
+        </Select>
       </Form.Item>
       <Form.Item label={text.layerColor}>
         <ColorPicker color="#fafafa" onChange={ui.changeLayerColor} />
@@ -129,7 +143,7 @@ export function QuakeForm(): JSX.Element {
       </Col>
       <Col span={24}>
         <Typography.Title level={4} type="secondary">
-          Depth {depth.min} - {depth.max}
+          Depth {formatToUnit(depth.min, Units.km)} to {formatToUnit(depth.max, Units.km)}
         </Typography.Title>
       </Col>
       <Col span={22} offset={1}>
