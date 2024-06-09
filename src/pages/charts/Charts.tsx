@@ -59,10 +59,10 @@ export function Charts(): JSX.Element {
                     }}
                   >
                     <p>
-                      <strong>Fecha:</strong> {date}
+                      <strong>Date:</strong> {date}
                     </p>
                     <p>
-                      <strong>Magnitud:</strong> {magnitude}
+                      <strong>Magnitude:</strong> {magnitude}
                     </p>
                   </div>
                 );
@@ -78,11 +78,11 @@ export function Charts(): JSX.Element {
         <table>
           <thead>
             <tr>
-              <th className={darkMode ? 'dark-mode' : ''}>Latitud</th>
-              <th className={darkMode ? 'dark-mode' : ''}>Longitud</th>
-              <th className={darkMode ? 'dark-mode' : ''}>Profundidad</th>
-              <th className={darkMode ? 'dark-mode' : ''}>Magnitud</th>
-              <th className={darkMode ? 'dark-mode' : ''}>Fecha</th>
+              <th className={darkMode ? 'dark-mode' : ''}>Latitude</th>
+              <th className={darkMode ? 'dark-mode' : ''}>Longitude</th>
+              <th className={darkMode ? 'dark-mode' : ''}>Depth</th>
+              <th className={darkMode ? 'dark-mode' : ''}>Magnitude</th>
+              <th className={darkMode ? 'dark-mode' : ''}>date</th>
             </tr>
           </thead>
           <tbody>
