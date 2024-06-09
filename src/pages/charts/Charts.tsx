@@ -16,13 +16,13 @@ export function Charts(): JSX.Element {
   const [darkMode, setDarkMode] = useState(false);
 
   const data = [
-    { date: '2023-01-01', magnitude: 4.5 },
-    { date: '2023-02-15', magnitude: 5.2 },
-    { date: '2023-03-30', magnitude: 3.8 },
-    { date: '2023-04-25', magnitude: 4.9 },
-    { date: '2023-05-10', magnitude: 4.3 },
-    { date: '2023-06-05', magnitude: 5.1 },
-    { date: '2023-06-05', magnitude: 6 }
+    { date: '2023-01-01', magnitude: 4.5, lat: 13.6929, lon: -89.2182, depth: 10 },
+    { date: '2023-02-15', magnitude: 5.2, lat: 13.7039, lon: -89.2132, depth: 15 },
+    { date: '2023-03-30', magnitude: 3.8, lat: 13.7329, lon: -89.2382, depth: 8 },
+    { date: '2023-04-25', magnitude: 4.9, lat: 13.7129, lon: -89.2282, depth: 12 },
+    { date: '2023-05-10', magnitude: 4.3, lat: 13.6829, lon: -89.2482, depth: 11 },
+    { date: '2023-06-05', magnitude: 5.1, lat: 13.7229, lon: -89.2582, depth: 9 },
+    { date: '2023-06-05', magnitude: 6, lat: 13.7329, lon: -89.2182, depth: 14 }
   ];
 
   const toggleDarkMode = () => {
@@ -70,11 +70,34 @@ export function Charts(): JSX.Element {
               return null;
             }}
           />
-
           <Scatter name="Earthquake" data={data} fill={darkMode ? '#fff' : '#000'} />
           <Legend />
         </ScatterChart>
       </ResponsiveContainer>
+      <div className={`table-container ${darkMode ? 'dark-mode' : ''}`}>
+        <table>
+          <thead>
+            <tr>
+              <th className={darkMode ? 'dark-mode' : ''}>Latitud</th>
+              <th className={darkMode ? 'dark-mode' : ''}>Longitud</th>
+              <th className={darkMode ? 'dark-mode' : ''}>Profundidad</th>
+              <th className={darkMode ? 'dark-mode' : ''}>Magnitud</th>
+              <th className={darkMode ? 'dark-mode' : ''}>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((item, index) => (
+              <tr key={index}>
+                <td className={darkMode ? 'dark-mode' : ''}>{item.lat}</td>
+                <td className={darkMode ? 'dark-mode' : ''}>{item.lon}</td>
+                <td className={darkMode ? 'dark-mode' : ''}>{item.depth}</td>
+                <td className={darkMode ? 'dark-mode' : ''}>{item.magnitude}</td>
+                <td className={darkMode ? 'dark-mode' : ''}>{item.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
