@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {
   ScatterChart,
   Scatter,
@@ -22,8 +21,8 @@ export function Charts(): JSX.Element {
   ];
 
   return (
-    <div>
-      <h1>Earthquake Magnitudes</h1>
+    <div style={{ background: '#222', color: '#fff', padding: '20px' }}>
+      <h1 style={{ color: '#fff' }}>Earthquake Magnitudes</h1>
       <ResponsiveContainer width="100%" height={400}>
         <ScatterChart
           width={600}
@@ -31,11 +30,36 @@ export function Charts(): JSX.Element {
           data={data}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" type='category'/>
-          <YAxis dataKey="magnitude" type='number'/>
-          <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-          <Scatter name="Earthquake" data={data} fill="#8884d8" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+          <XAxis dataKey="date" type="category" stroke="#fff" />
+          <YAxis dataKey="magnitude" type="number" stroke="#fff" />
+          <Tooltip
+            cursor={{ strokeDasharray: '3 3' }}
+            content={({ payload }) => {
+              if (payload && payload.length) {
+                const { date, magnitude, place } = payload[0].payload;
+                return (
+                  <div
+                    style={{ backgroundColor:'#222', border: '1px solid #ccc', padding: '10px' }}
+                  >
+                    <p>
+                      <strong>Fecha:</strong> {date}
+                    </p>
+                    <p>
+                      <strong>Magnitud:</strong> {magnitude}
+                    </p>
+                    <p>
+                      <strong>Lugar:</strong> {place}
+                    </p>
+                  </div>
+                );
+              }
+              return null;
+            }}
+          />
+
+          <Scatter name="Earthquake" data={data} fill="#fff" />
+          <Legend />
         </ScatterChart>
       </ResponsiveContainer>
     </div>
