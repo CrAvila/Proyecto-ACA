@@ -60,12 +60,8 @@ export function Charts(): JSX.Element {
                     <p>
                       <strong>Fecha:</strong> {date}
                     </p>
-                    a
                     <p>
                       <strong>Magnitud:</strong> {magnitude}
-                    </p>
-                    <p>
-                      <strong>Lugar:</strong> {place}
                     </p>
                   </div>
                 );
