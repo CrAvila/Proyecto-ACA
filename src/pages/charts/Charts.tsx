@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Charts.scss';
 
 import {
   ScatterChart,
@@ -29,15 +30,11 @@ export function Charts(): JSX.Element {
   };
 
   return (
-    <div
-      style={{
-        background: darkMode ? '#222' : '#fff',
-        color: darkMode ? '#fff' : '#000',
-        padding: '20px'
-      }}
-    >
-      <h1 style={{ color: darkMode ? '#fff' : '#000' }}>Earthquake Magnitudes</h1>
-      <button style={{ background: darkMode ? '#fff' : '#000',  color: darkMode ? '#000' : '#fff'}} onClick={toggleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</button>
+    <div className={`container ${darkMode ? 'dark-mode' : ''}`}>
+      <h1>Earthquake Magnitudes</h1>
+      <button className={darkMode ? 'dark-mode' : ''} onClick={toggleDarkMode}>
+        {darkMode ? 'Light Mode' : 'Dark Mode'}
+      </button>
       <ResponsiveContainer width="100%" height={400}>
         <ScatterChart
           width={600}
@@ -55,7 +52,11 @@ export function Charts(): JSX.Element {
                 const { date, magnitude, place } = payload[0].payload;
                 return (
                   <div
-                  style={{ backgroundColor: darkMode ? '#222' : '#fff', border: '1px solid #ccc', padding: '10px' }}
+                    style={{
+                      backgroundColor: darkMode ? '#222' : '#fff',
+                      border: '1px solid #ccc',
+                      padding: '10px'
+                    }}
                   >
                     <p>
                       <strong>Fecha:</strong> {date}

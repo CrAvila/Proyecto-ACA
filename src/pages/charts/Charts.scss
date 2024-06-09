@@ -1,0 +1,31 @@
+// Estilos para el componente Charts
+
+.container {
+    padding: 20px;
+    background-color: #fff;
+    color: #000;
+  
+    &.dark-mode {
+      background-color: #222;
+      color: #fff;
+    }
+  
+    h1 {
+      color: inherit;
+    }
+  
+    button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-bottom: 20px;
+  
+      &.dark-mode {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+  
