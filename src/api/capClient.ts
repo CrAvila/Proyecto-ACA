@@ -35,7 +35,13 @@ export class CapClient {
         params: {
           format: `geojson`,
           starttime: (filter.date.min || "").split("T")[0],
-          endtime: (filter.date.max || "").split("T")[0]
+          endtime: (filter.date.max || "").split("T")[0],
+          mindepth: filter.depth.min,
+          maxdepth: filter.depth.max,
+          minmagnitude: filter.magnitude.min,
+          maxmagnitude: filter.magnitude.max,
+          //mincdi: filter.intensity.min,
+          //maxcdi: filter.intensity.max,
         }
       });
       if (this.wasSuccess(response)) {
