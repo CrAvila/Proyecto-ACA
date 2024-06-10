@@ -3,7 +3,6 @@ export type Quake = {
   properties: {
     time: Date;
     place: string;
-    depth: number;
     mag: number;
     mmi: number;
     intensityDescription: string;
