@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+$primary-color: #13a699;
+$secondary-color: #ffd708;
+$cancel-color: #ececec;
+$main-background-color: #fff7ed;
+
+$button-colors: (primary: $primary-color, secondary: $secondary-color, cancel: $cancel-color);
+
+
+
+.button {
+  font-family: "Nunito", sans-serif;
+  margin-bottom: 16px;
+  margin-right: 8px;
+  margin-left: 8px;
+  cursor: pointer;
+  border: none;
+  border-radius:4px;
+  padding: 8px 12px;
+  transition: all .15s ease-out;
+}
+
+@function set-color($color) {
+    @if (lightness($color) > 40) {
+      @return #000;
+    }
+    @else {
+      @return #FFF;
+    }
+}
+
+@each $name, $color in $button-colors {
+  .button--#{$name} {
+    background-color: $color;
+    color:set-color($color);
+    &:hover{
+      background: lighten($color, 10%)
+    }
+  }
+}
+
