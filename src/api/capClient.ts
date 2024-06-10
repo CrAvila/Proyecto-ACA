@@ -2,7 +2,7 @@ import type { AxiosInstance, AxiosResponse } from 'axios';
 import axios from 'axios';
 import { stringify } from 'qs';
 import { QuakeFilter } from 'types/api/request';
-import { Quake } from 'types/api/responses';
+import { FeatureCollection, Quake } from 'types/api/responses';
 
 export class CapClient {
   private readonly baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -28,8 +28,29 @@ export class CapClient {
     return res.status >= 200 && res.status <= 300;
   }
 
-  public async getQuakes(filter: QuakeFilter): Promise<Quake[] | Error> {
+  public async getQuakes(filter: QuakeFilter): Promise<FeatureCollection | Error> {
+    const url = `https://earthquake.usgs.gov/fdsnws/event/1/query`;
+    try {
+      const response = await this.axios.get<FeatureCollection>(url, {
+        params: {
+          format: `geojson`,
+          starttime: (filter.date.min || "").split("T")[0],
+          endtime: (filter.date.max || "").split("T")[0]
+        }
+      });
+      if (this.wasSuccess(response)) {
+        return response.data;
+      }
+      return new Error(response.statusText);
+    } catch (e) {
+      return e as Error;
+    }
+    
+  }
+
+  public async getQuakesOld(filter: QuakeFilter): Promise<Quake[] | Error> {
     const url = `/Quake`;
+    console.log(filter);
     try {
       const response = await this.axios.get<Quake[]>(url, {
         params: {
