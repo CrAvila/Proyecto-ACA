@@ -13,8 +13,11 @@ export function App(): JSX.Element {
         <div className="navbar">
           <img src={logo} alt="CAP logo" className="logo" width={100} />
           <Menu theme="dark" mode="horizontal" selectedKeys={[route.pathname]}>
-            <Menu.Item key="/">
-              <Link to="/">Home</Link>
+          <Menu.Item key="/">
+              <Link to="/">Main</Link>
+            </Menu.Item>
+            <Menu.Item key="/home">
+              <Link to="/home">Home</Link>
             </Menu.Item>
             <Menu.Item key="/charts">
               <Link to="/charts">Charts</Link>
