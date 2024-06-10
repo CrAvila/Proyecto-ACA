@@ -15,9 +15,23 @@
 
 .navbar {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   .logo {
     object-fit: contain;
     margin-right: 2em;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .right{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-right: 10px;
   }
 }
