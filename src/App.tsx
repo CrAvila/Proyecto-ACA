@@ -11,7 +11,7 @@ export function App(): JSX.Element {
     <Layout className="layout">
       <Layout.Header className="layout-header">
         <div className="navbar">
-          <img src={logo} alt="CAP logo" className="logo" width={100} />
+          <span className='title'>QuakeSphere</span>
           <div className='right'>
             <Menu theme="dark" mode="horizontal" selectedKeys={[route.pathname]}>
               <Menu.Item key="/">

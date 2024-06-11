@@ -15,7 +15,7 @@ export function MainWorld() {
         transition={{ duration: 1 }}
       >
         <h1>
-          It's a <span>proyecto CAP</span> Website
+          It's a <span>QuakeSphere</span> Website
         </h1>
         <p className="details">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
