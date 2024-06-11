@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './mainWorld.scss';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import exampleImage from './map.png';
 import { Description } from './Description';
 
@@ -15,7 +15,7 @@ export function MainWorld() {
         transition={{ duration: 1 }}
       >
         <h1>
-          It's a <span>QuakeSphere</span> Website
+          It's a <span className="neon-text">QuakeSphere</span> Website
         </h1>
         <p className="details">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.

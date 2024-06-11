@@ -2,8 +2,10 @@
 
 $primary-color: #F6F5F5;
 $secondary-color: #08142c;
-$background-color: #f0f0f0;
+$btn-color:#0d234e;
+$background-color: #08142c;
 $text-color: white;
+$neon-color: #F6F5F5;
 $text-secundary: white;
 $details-color: white;
 
@@ -20,8 +22,8 @@ body {
   justify-content: space-between;
   height: 100vh;
   padding: 0 10%;
-  background: radial-gradient(80% 120% at 55%  0%,black 55%, #0d2044);
-  color:$text-color;
+  background: radial-gradient(80% 120% at 55% 0%, black 55%, #0d2044);
+  color: $text-color;
 }
 
 .content {
@@ -34,7 +36,15 @@ body {
     margin-bottom: 20px;
 
     span {
-      color: $secondary-color;
+      color: $neon-color; // Color de neón cian
+      font-weight: bold;
+      text-shadow:
+        0 0 5px rgba(19, 45, 97, 1.8),
+        0 0 10px rgba(19, 45, 97, 1.6),
+        0 0 20px rgba(19, 45, 97, 1.5),
+        0 0 40px rgba(19, 45, 97, 5.4),
+        0 0 80px rgba(19, 45, 97, 12.3); // Efecto de neón
+
     }
   }
 
@@ -48,15 +58,15 @@ body {
     font-size: 1rem;
     padding: 10px 20px;
     color: $text-secundary;
-    background-color: $secondary-color;
+    background-color: darken($btn-color, 0.5%);
     border: none;
     border-radius: 5px;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.8s ease;
 
     &:hover {
-      background-color: darken($secondary-color, 10%);
+      background-color:$secondary-color 
     }
   }
 }

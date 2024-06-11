@@ -1,5 +1,4 @@
 import { Layout, Menu } from 'antd';
-import logo from 'assets/cap.png';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from 'components';
 import 'antd/dist/reset.css';
@@ -11,7 +10,7 @@ export function App(): JSX.Element {
     <Layout className="layout">
       <Layout.Header className="layout-header">
         <div className="navbar">
-          <span className='title'>QuakeSphere</span>
+          <Link to="/" className='title'>QuakeSphere</Link>
           <div className='right'>
             <Menu theme="dark" mode="horizontal" selectedKeys={[route.pathname]}>
               <Menu.Item key="/">
