@@ -1,4 +1,4 @@
-
+/* 
 .ab{
     padding: 1.5em 1em;
     margin: 10px;
@@ -10,3 +10,102 @@
     color: rgb(255, 69, 69);
 }
 
+ */
+// AGREGADO DE NUEVOS COMPONETES SCSS
+.about-layout {
+    background: #f0f2f5;
+    padding: 30px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.about-content {
+    max-width: 800px;
+    width: 100%;
+}
+
+.about-card {
+    background: #ffffff;
+    padding: 24px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.6s;
+}
+
+.about-card h1 {
+    color: #1890ff;
+}
+
+.about-card ul {
+    padding-left: 20px;
+}
+
+.about-card ul li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #1890ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.flip-card {
+    cursor: pointer;
+/*     background-color: transparent;
+    width: 100%;
+    height: 200px;
+    perspective: 1000px; */
+}
+/* 
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+ */
+/* .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+} */
+
+.flip-card-front,
+.flip-card-back {
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: none;
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.flipped .flip-card-front{
+    transform: rotateY(180deg);
+}
+
+.flipped .flip-card-back{
+    transform: rotateY(0);
+}
+
+:where(.css-dev-only-do-not-override-j0nf2s).ant-card .ant-card-grid{
+    width: auto;
+}

@@ -11,21 +11,23 @@ export function App(): JSX.Element {
     <Layout className="layout">
       <Layout.Header className="layout-header">
         <div className="navbar">
-          <img src={logo} alt="CAP logo" className="logo" width={100} />
-          <Menu theme="dark" mode="horizontal" selectedKeys={[route.pathname]}>
-          <Menu.Item key="/">
-              <Link to="/">Main</Link>
-            </Menu.Item>
-            <Menu.Item key="/home">
-              <Link to="/home">Home</Link>
-            </Menu.Item>
-            <Menu.Item key="/charts">
-              <Link to="/charts">Charts</Link>
-            </Menu.Item>
-            <Menu.Item key="/about">
-              <Link to="/about">About</Link>
-            </Menu.Item>
-          </Menu>
+          <span className='title'>QuakeSphere</span>
+          <div className='right'>
+            <Menu theme="dark" mode="horizontal" selectedKeys={[route.pathname]}>
+              <Menu.Item key="/">
+                <Link to="/">Main</Link>
+              </Menu.Item>
+              <Menu.Item key="/home">
+                <Link to="/home">Home</Link>
+              </Menu.Item>
+              <Menu.Item key="/charts">
+                <Link to="/charts">Charts</Link>
+              </Menu.Item>
+              <Menu.Item key="/about">
+                <Link to="/about">About</Link>
+              </Menu.Item>
+            </Menu>
+          </div>
         </div>
       </Layout.Header>
       <Layout.Content>
