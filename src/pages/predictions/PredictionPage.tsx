@@ -14,6 +14,7 @@ const PredictionPage = () => {
   const route = useLocation();
   const [filterOptions, setFilterOptions] = useState({ latitude: 0, longitude: 0, depth: 0 });
   const [predictionData, setPredictionData] = useState([]);
+  const [form] = Form.useForm();
 
   const center = [13.794185, -88.89653];
 
@@ -31,10 +32,14 @@ const PredictionPage = () => {
   };
 
   const LocationMarker = () => {
-    const map = useMapEvents({
+    useMapEvents({
       click(e) {
         const { lat, lng } = e.latlng;
-        setFilterOptions(prev => ({ ...prev, latitude: lat, longitude: lng }));
+        setFilterOptions(prev => {
+          const newOptions = { ...prev, latitude: lat, longitude: lng };
+          form.setFieldsValue(newOptions);
+          return newOptions;
+        });
       },
     });
 
@@ -52,15 +57,15 @@ const PredictionPage = () => {
       <Layout.Content>
         <ErrorBoundary>
           <div className="prediction-container">
-            <Form name="filter-form" layout="inline" onFinish={onFinish} initialValues={filterOptions}>
+            <Form form={form} name="filter-form" layout="inline" onFinish={onFinish} initialValues={filterOptions}>
               <Form.Item className="form-item" name="latitude" label="Latitude">
-                <Input value={filterOptions.latitude} type="number" step="0.01" />
+                <Input type="number" step="0.01" />
               </Form.Item>
               <Form.Item className="form-item" name="longitude" label="Longitude">
-                <Input value={filterOptions.longitude} type="number" step="0.01" />
+                <Input type="number" step="0.01" />
               </Form.Item>
               <Form.Item className="form-item" name="depth" label="Depth">
-                <Input value={filterOptions.depth} type="number" step="0.1" />
+                <Input type="number" step="0.1" />
               </Form.Item>
               <Form.Item>
                 <Button className="predict-btn" type="primary" htmlType="submit">
