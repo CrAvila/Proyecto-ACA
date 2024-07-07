@@ -65,7 +65,7 @@ const PredictionPage = () => {
                 <Input type="number" step="0.01" />
               </Form.Item>
               <Form.Item className="form-item" name="depth" label="Depth">
-                <Input type="number" step="0.1" />
+                <Input type="number" step="0.1" min="0" />
               </Form.Item>
               <Form.Item>
                 <Button className="predict-btn" type="primary" htmlType="submit">
