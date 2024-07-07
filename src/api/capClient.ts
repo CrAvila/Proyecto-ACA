@@ -73,4 +73,24 @@ export class CapClient {
       return e as Error;
     }
   }
+
+  public async getQuakesByLocation(latitude: number, longitude: number, maxradiuskm: number): Promise<FeatureCollection | Error> {
+    const url = `https://earthquake.usgs.gov/fdsnws/event/1/query`;
+    try {
+      const response = await this.axios.get<FeatureCollection>(url, {
+        params: {
+          format: 'geojson',
+          latitude: latitude,
+          longitude: longitude,
+          maxradiuskm: maxradiuskm
+        }
+      });
+      if (this.wasSuccess(response)) {
+        return response.data;
+      }
+      return new Error(response.statusText);
+    } catch (e) {
+      return e as Error;
+    }
+  }
 }
