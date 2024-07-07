@@ -1,6 +1,8 @@
 import { Layout, Menu } from 'antd';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from 'components';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'antd/dist/reset.css';
 import './App.scss';
 
@@ -34,6 +36,7 @@ export function App(): JSX.Element {
           <Outlet />
         </ErrorBoundary>
       </Layout.Content>
+      <ToastContainer />
     </Layout>
   );
 }
