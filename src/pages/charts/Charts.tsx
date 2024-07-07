@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Charts.scss';
 
 import {
@@ -14,28 +14,61 @@ import {
 
 import { countries } from './countries';
 
+interface EarthquakeFeature {
+  properties: {
+    mag: number;
+    time: number;
+    place: string;
+  };
+  geometry: {
+    coordinates: [number, number, number];
+  };
+}
+
+interface EarthquakeData {
+  date: string;
+  magnitude: number;
+  lat: number;
+  lon: number;
+  depth: number;
+  place: string;
+}
+
 export function Charts(): JSX.Element {
   const [lightMode, setLightMode] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [data, setData] = useState<EarthquakeData[]>([]);
 
-  const data = [
-    { date: '2023-01-01', magnitude: 4.5, lat: 13.6929, lon: -89.2182, depth: 10 },
-    { date: '2023-02-15', magnitude: 5.2, lat: 13.7039, lon: -89.2132, depth: 15 },
-    { date: '2023-03-30', magnitude: 3.8, lat: 13.7329, lon: -89.2382, depth: 8 },
-    { date: '2023-04-25', magnitude: 4.9, lat: 13.7129, lon: -89.2282, depth: 12 },
-    { date: '2023-05-10', magnitude: 4.3, lat: 13.6829, lon: -89.2482, depth: 11 },
-    { date: '2023-06-05', magnitude: 5.1, lat: 13.7229, lon: -89.2582, depth: 9 },
-    { date: '2023-06-05', magnitude: 6, lat: 13.7329, lon: -89.2182, depth: 14 }
-  ];
+  useEffect(() => {
+    fetchEarthquakeData();
+  }, [selectedCountry]);
 
-  const togglelightMode = () => {
+  const fetchEarthquakeData = async () => {
+    try {
+      const response = await fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=${selectedCountry.lat}&longitude=${selectedCountry.lon}&maxradiuskm=200`);
+      const data = await response.json();
+      const formattedData = data.features.map((feature: EarthquakeFeature) => ({
+        date: new Date(feature.properties.time).toISOString().split('T')[0],
+        magnitude: feature.properties.mag,
+        lat: feature.geometry.coordinates[1],
+        lon: feature.geometry.coordinates[0],
+        depth: feature.geometry.coordinates[2],
+        place: feature.properties.place
+      }));
+      setData(formattedData);
+    } catch (error) {
+      console.error('Error fetching earthquake data:', error);
+    }
+  };
+
+  const toggleLightMode = () => {
     setLightMode(!lightMode);
   };
 
   return (
     <div className={`container ${lightMode ? 'light-mode' : ''}`}>
       <h1 style={{ color: lightMode ? 'black' : 'white' }}>Earthquake Magnitudes</h1>
-      <button className={lightMode ? 'light-mode' : ''} onClick={togglelightMode}>
+      <button className={lightMode ? 'light-mode' : ''} onClick={toggleLightMode}>
         {lightMode ? 'Dark Mode' : 'Light Mode'}
       </button>
 
@@ -68,7 +101,7 @@ export function Charts(): JSX.Element {
             cursor={{ strokeDasharray: '3 3' }}
             content={({ payload }) => {
               if (payload && payload.length) {
-                const { date, magnitude, place } = payload[0].payload;
+                const { date, magnitude, lat, lon, depth, place } = payload[0].payload;
                 return (
                   <div
                     style={{
@@ -82,6 +115,18 @@ export function Charts(): JSX.Element {
                     </p>
                     <p>
                       <strong>Magnitude:</strong> {magnitude}
+                    </p>
+                    <p>
+                      <strong>Latitude:</strong> {lat}
+                    </p>
+                    <p>
+                      <strong>Longitude:</strong> {lon}
+                    </p>
+                    <p>
+                      <strong>Depth:</strong> {depth} km
+                    </p>
+                    <p>
+                      <strong>Place:</strong> {place}
                     </p>
                   </div>
                 );
@@ -101,7 +146,8 @@ export function Charts(): JSX.Element {
               <th className={lightMode ? 'light-mode' : ''}>Longitude</th>
               <th className={lightMode ? 'light-mode' : ''}>Depth</th>
               <th className={lightMode ? 'light-mode' : ''}>Magnitude</th>
-              <th className={lightMode ? 'light-mode' : ''}>date</th>
+              <th className={lightMode ? 'light-mode' : ''}>Date</th>
+              <th className={lightMode ? 'light-mode' : ''}>Place</th>
             </tr>
           </thead>
           <tbody>
@@ -112,6 +158,7 @@ export function Charts(): JSX.Element {
                 <td className={lightMode ? 'light-mode' : ''}>{item.depth}</td>
                 <td className={lightMode ? 'light-mode' : ''}>{item.magnitude}</td>
                 <td className={lightMode ? 'light-mode' : ''}>{item.date}</td>
+                <td className={lightMode ? 'light-mode' : ''}>{item.place}</td>
               </tr>
             ))}
           </tbody>
