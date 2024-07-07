@@ -62,7 +62,7 @@ export function World(): JSX.Element {
       pointRadius={0.04}
       pointColor={(o: object): string => colorFunc(o, layersData)}
       pointLabel={(d: object): string => `
-        <b>${(d as Quake).location}</b>
+        <b>${(d as Quake).properties.place}</b>
     `}
     />
   );

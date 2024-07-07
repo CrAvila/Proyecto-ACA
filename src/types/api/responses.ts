@@ -1,15 +1,18 @@
 export type Quake = {
   id: number;
-  date: string;
-  latitude: number;
-  longitude: number;
-  location: string;
-  depth: number;
-  magnitude: number;
-  intensity: number;
-  intensityDescription: string;
-  geom: {
+  properties: {
+    time: Date;
+    place: string;
+    mag: number;
+    mmi: number;
+    intensityDescription: string;
+  }
+  geometry: {
     type: 'Point';
-    coordinates: [Lng: number, Lat: number];
+    coordinates: number[];
   };
+};
+
+export type FeatureCollection = {
+  features: Quake[];
 };

@@ -2,15 +2,15 @@ import { Quake } from 'types/api/responses';
 import { Layer } from '../types/state';
 
 export function layerLat(d: object): number {
-  return (d as Quake).geom.coordinates[1];
+  return (d as Quake).geometry.coordinates[1];
 }
 
 export function layerLng(d: object): number {
-  return (d as Quake).geom.coordinates[0];
+  return (d as Quake).geometry.coordinates[0];
 }
 
 export function layerHeight(d: object): number {
-  return (d as Quake).magnitude * 0.03;
+  return (d as Quake).properties.mag * 0.03;
 }
 
 function getLayerColor(qIndex: number, stops: number[], layers: Layer<Quake>[]): string {

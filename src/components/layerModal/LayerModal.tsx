@@ -35,10 +35,10 @@ export function LayerModal(): JSX.Element {
             return (
               <List.Item key={q.id} onClick={onClick}>
                 <List.Item.Meta
-                  title={<Typography.Title level={4}>Magnitud {q.magnitude}</Typography.Title>}
+                  title={<Typography.Title level={4}>Magnitud {q.properties.mag}</Typography.Title>}
                   description={
                     <Typography.Text>
-                      {quakeLocString(q)} {q.location}
+                      {quakeLocString(q)} {q.properties.place}
                     </Typography.Text>
                   }
                 />
