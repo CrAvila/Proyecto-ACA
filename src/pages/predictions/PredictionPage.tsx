@@ -37,22 +37,22 @@ const PredictionPage = () => {
         <ErrorBoundary>
           <div className="prediction-container">
             <Form name="filter-form" layout="inline" onFinish={onFinish}>
-              <Form.Item name="latitude" label="Latitude">
+              <Form.Item className="form-item" name="latitude" label="Latitude">
                 <Input type="number" step="0.01" />
               </Form.Item>
-              <Form.Item name="longitude" label="Longitude">
+              <Form.Item className="form-item" name="longitude" label="Longitude">
                 <Input type="number" step="0.01" />
               </Form.Item>
-              <Form.Item name="depth" label="Depth">
+              <Form.Item className="form-item" name="depth" label="Depth">
                 <Input type="number" step="0.1" />
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">
+                <Button className="predict-btn" type="primary" htmlType="submit">
                   Predict Magnitude
                 </Button>
               </Form.Item>
             </Form>
-            <MapContainer center={center} zoom={7} style={{ height: '500px', width: '100%' }} className="map-container">
+            <MapContainer center={center} zoom={7} style={{ height: '500px', width: '700px' }} className="map-container">
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -1,15 +1,32 @@
 .prediction-container{
-  margin-top: 5%;
+  height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  flex-direction: row;
+
 }
 
-.prediction-container {
-  .map-container {
-    height: 500px; // Ensure the map container has a height
-  }
+form {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
 }
 
-.layout {
+.form-item {
+  width: 50%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
+
+.predict-btn {
+  margin-top: 15%;
+}
+
+.form-item label{
+
+}
+
