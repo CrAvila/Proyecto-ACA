@@ -1,3 +1,4 @@
+// src/App.tsx
 import { Layout, Menu } from 'antd';
 import { Link, Outlet, useLocation, Route, Routes } from 'react-router-dom';
 import { ErrorBoundary } from 'components';
@@ -6,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'antd/dist/reset.css';
 import './App.scss';
 import { Home, NotFound, Charts, About, PredictionPage, MainWorld } from 'pages/index';
+
 export function App(): JSX.Element {
   const route = useLocation();
 
@@ -17,24 +19,16 @@ export function App(): JSX.Element {
           <div className="right">
             <Menu theme="dark" mode="horizontal" selectedKeys={[route.pathname]}>
               <Menu.Item key="/">
-                <Link to="/" aria-label="Main Page">
-                  Main
-                </Link>
+                <Link to="/" aria-label="Main Page">Main</Link>
               </Menu.Item>
               <Menu.Item key="/home">
-                <Link to="/home" aria-label="Home Page">
-                  Home
-                </Link>
+                <Link to="/home" aria-label="Home Page">Home</Link>
               </Menu.Item>
               <Menu.Item key="/charts">
-                <Link to="/charts" aria-label="Charts Page">
-                  Charts
-                </Link>
+                <Link to="/charts" aria-label="Charts Page">Charts</Link>
               </Menu.Item>
               <Menu.Item key="/about">
-                <Link to="/about" aria-label="About Page">
-                  About
-                </Link>
+                <Link to="/about" aria-label="About Page">About</Link>
               </Menu.Item>
               <Menu.Item key="/predictions">
                 <Link to="/predictions" aria-label="Predictions Page">Predictions</Link>
@@ -51,6 +45,7 @@ export function App(): JSX.Element {
             <Route path="/charts" element={<Charts />} />
             <Route path="/about" element={<About />} />
             <Route path="/predictions" element={<PredictionPage />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </ErrorBoundary>
       </Layout.Content>
