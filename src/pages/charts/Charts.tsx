@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Charts.scss';
-
+import { CapClient } from '../../api/capClient';
 import {
   ScatterChart,
   Scatter,
@@ -11,19 +11,7 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-
 import { countries } from './countries';
-
-interface EarthquakeFeature {
-  properties: {
-    mag: number;
-    time: number;
-    place: string;
-  };
-  geometry: {
-    coordinates: [number, number, number];
-  };
-}
 
 interface EarthquakeData {
   date: string;
@@ -44,18 +32,27 @@ export function Charts(): JSX.Element {
   }, [selectedCountry]);
 
   const fetchEarthquakeData = async () => {
+    const capClient = new CapClient('test-api-key');
     try {
-      const response = await fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=${selectedCountry.lat}&longitude=${selectedCountry.lon}&maxradiuskm=200`);
-      const data = await response.json();
-      const formattedData = data.features.map((feature: EarthquakeFeature) => ({
-        date: new Date(feature.properties.time).toISOString().split('T')[0],
-        magnitude: feature.properties.mag,
-        lat: feature.geometry.coordinates[1],
-        lon: feature.geometry.coordinates[0],
-        depth: feature.geometry.coordinates[2],
-        place: feature.properties.place
-      }));
-      setData(formattedData);
+      const response = await capClient.getQuakesByLocation(
+        selectedCountry.lat,
+        selectedCountry.lon,
+        200
+      );
+
+      if (response instanceof Error) {
+        console.error('Error fetching earthquake data:', response.message);
+      } else {
+        const formattedData = response.features.map((feature) => ({
+          date: new Date(feature.properties.time).toISOString().split('T')[0],
+          magnitude: feature.properties.mag,
+          lat: feature.geometry.coordinates[1],
+          lon: feature.geometry.coordinates[0],
+          depth: feature.geometry.coordinates[2],
+          place: feature.properties.place
+        }));
+        setData(formattedData);
+      }
     } catch (error) {
       console.error('Error fetching earthquake data:', error);
     }
