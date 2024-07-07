@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { ErrorBoundary } from 'components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './PredictionPage.scss';
 import 'antd/dist/reset.css';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -19,7 +20,6 @@ export const PredictionPage = () => {
   // Placeholder for map center
   const center = [13.794185, -88.89653];
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const onFinish = (values: never) => {
     console.log('Filter options:', values);
     // Update filterOptions state
@@ -27,21 +27,13 @@ export const PredictionPage = () => {
     // TODO: Fetch filtered data
   };
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   return (
     <Layout className="layout">
 
       <Layout.Content>
         <ErrorBoundary>
           <div className="prediction-container">
-            <Form
-              name="filter-form"
-              layout="inline"
-              onFinish={onFinish}
-            >
+            <Form name="filter-form" layout="inline" onFinish={onFinish}>
               <Form.Item name="startDate" label="Start Date">
                 <Input type="date" />
               </Form.Item>
