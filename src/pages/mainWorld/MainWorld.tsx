@@ -18,7 +18,7 @@ export function MainWorld() {
           It's a <span className="neon-text">QuakeSphere</span> Website
         </h1>
         <p className="details">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+        Have you ever wondered how and why earthquakes occur in Latin America? We live in a region where earthquakes are common, but understanding their origin and behavior can help us be better prepared. Thanks to scientific and technological advancements, we are unraveling the mysteries of these natural phenomena. Discover how researchers are using seismic data and innovative tools to enhance our understanding of earthquakes. The key to our safety might be closer than you think!
         </p>
         <Link to="./home">
           <motion.a
@@ -26,7 +26,7 @@ export function MainWorld() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            Explorar Más
+            Explore More
           </motion.a>
         </Link>
       </motion.div>

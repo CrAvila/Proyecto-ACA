@@ -18,25 +18,20 @@ export function App(): JSX.Element {
           </Link>
           <div className="right">
             <Menu theme="dark" mode="horizontal" selectedKeys={[route.pathname]}>
-              <Menu.Item key="/">
-                <Link to="/" aria-label="Main Page">
-                  Main
-                </Link>
+            <Menu.Item key="/">
+                <Link to="/" aria-label="Main Page">Main</Link>
               </Menu.Item>
               <Menu.Item key="/home">
-                <Link to="/home" aria-label="Home Page">
-                  Home
-                </Link>
+                <Link to="/home" aria-label="Home Page">Home</Link>
               </Menu.Item>
               <Menu.Item key="/charts">
-                <Link to="/charts" aria-label="Charts Page">
-                  Charts
-                </Link>
+                <Link to="/charts" aria-label="Charts Page">Charts</Link>
               </Menu.Item>
+              <Menu.Item key="/predictions">
+                <Link to="/predictions" aria-label="Predictions Page">Predictions</Link>
+              </Menu.Item> 
               <Menu.Item key="/about">
-                <Link to="/about" aria-label="About Page">
-                  About
-                </Link>
+                <Link to="/about" aria-label="About Page">About</Link>
               </Menu.Item>
             </Menu>
           </div>
