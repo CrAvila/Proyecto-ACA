@@ -29,3 +29,5 @@ random_forest_model.pkl
 random_forest_model.pkl
 *.tar.gz
 *.pkl
+random_forest_model.pkl
+*.tar.gz
