@@ -1,16 +1,43 @@
 import React, { useState } from 'react';
+import { Card, Typography, Layout, List } from 'antd';
+import { GithubOutlined } from '@ant-design/icons';
 import './About.scss';
-import { Card, Typography, Layout } from 'antd';
+
 
 const { Title, Paragraph } = Typography;
 const { Content } = Layout;
 
 export function About(): JSX.Element {
+  const lastTeam = [
+    'Yury Alejandro Rivera Quintanilla (00081816@uca.edu.sv)',
+    'Carlos Roberto Ávila Hernández (00032420@uca.edu.sv)',
+    'Francisco Orlando Rodriguez Chica (00060618@uca.edu.sv)',
+  ];
+
+  const newTeam = [
+    'Carlos Roberto Ávila Hernández (00032420@uca.edu.sv)',
+    'Kevin Bryan Hernandez Lopez (00057720@uca.edu.sv)',
+    'Andres Emilio Puente Cruz (00287919@uca.edu.sv)',
+    'Fernando Jose Galdamez Mendoza (00120520@uca.edu.sv)',
+    'Jonathan Ariel Cabrera Galdamez (00003120@uca.edu.sv)',
+  ];
+
+  const repositories = [
+    { name: 'Backend Repository', url: 'https://github.com/ShulkMaster/cap' },
+    { name: 'Frontend Web Repository', url: 'https://github.com/ShulkMaster/cap-web' },
+    { name: 'Proyecto ACA', url: 'https://github.com/CrAvila/Proyecto-ACA'},
+  ];
+
+  const resources = [
+    { name: 'USGS Copyright and credits', url: 'https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits#:~:text=Important%20information%20related%20to%20copyrights,in%20the%20U.S.%20Public%20Domain' },
+  ];
+
+/* 
   const [flipped, setFlipped] = useState(false);
 
   const handleFlip = () => {
     setFlipped(!flipped);
-  };
+  }; */
 
   return (
     <Layout className="about-layout">
@@ -23,57 +50,57 @@ export function About(): JSX.Element {
           </Paragraph>
         </Card>
 
-        <Card
-          title={<Title level={2}>The Team</Title>}
-          bordered={false}
-          className={`about-card flip-card ${flipped ? 'flipped' : ''}`}
-          onClick={handleFlip}
-        >
-          <Card.Grid className="flip-card-front">
-            <Paragraph>
-              As mentioned above the <b>LAST TEAM</b> is formed by 3 students from the engineering faculty,
-              especifically from the system engineering career. They are:
-              <ul>
-                <li>Yury Alejandro Rivera Quintanilla 00081816@uca.edu.sv </li>
-                <li>Carlos Roberto Ávila Hernández 00032420@uca.edu.sv </li>
-                <li>Francisco Orlando Rodriguez Chica 00060618@uca.edu.sv </li>
-              </ul>
-            </Paragraph>
-          </Card.Grid>
-          <Card.Grid className="flip-card-back">
-            <Paragraph>
-              An the <b>new team</b> is formed by 5 students from the engineering faculty in the system
-              engineering career. They are:
-              <ul>
-                <li>Carlos Roberto Ávila Hernández 00032420@uca.edu.sv </li>
-                <li>Kevin Bryan Hernandez Lopez 00057720@uca.edu.sv </li>
-                <li>Andres Emilio Puente Cruz 00287919@uca.edu.sv </li>
-                <li>Fernando Jose Galdamez Mendoza 00120520@uca.edu.sv </li>
-                <li>Jonathan Ariel Cabrera Galdamez 00003120@uca.edu.sv </li>
-              </ul>
-            </Paragraph>
-          </Card.Grid>
+        <Card title={<Title level={2}>Last Team</Title>} bordered={false} className="about-card">
+          <List
+            dataSource={lastTeam}
+            renderItem={(item) => (
+              <List.Item>
+                <Paragraph>{item}</Paragraph>
+              </List.Item>
+            )}
+          />
+        </Card>
+
+        <Card title={<Title level={2}>New Team</Title>} bordered={false} className="about-card">
+          <List
+            dataSource={newTeam}
+            renderItem={(item) => (
+              <List.Item>
+                <Paragraph>{item}</Paragraph>
+              </List.Item>
+            )}
+          />
         </Card>
 
         <Card title={<Title level={2}>Repository</Title>} bordered={false} className="about-card">
+          <List
+            dataSource={repositories}
+            renderItem={(item) => (
+              <List.Item>
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  <GithubOutlined style={{ marginRight: 8 }} />
+                  {item.name}
+                </a>
+              </List.Item>
+            )}
+          />
+        </Card>
+
+        <Card title={<Title level={2}>Resources</Title>} bordered={false} className="about-card">
           <Paragraph>
-            The project is divided into two repositories, one for the backend and another for the
-            frontend.
-            <ul>
-              <li>
-                <a href="https://github.com/ShulkMaster/cap">Backend Repository</a>
-              </li>
-              <li>
-                <a href="https://github.com/ShulkMaster/cap-web">Frontend web Repository</a>
-              </li>
-            </ul>
-            And the new repository is:
-            <ul>
-              <li>
-                <a href="https://github.com/CrAvila/Proyecto-ACA">Project A.C.A Repository</a>
-              </li>
-            </ul>
+            Data and information created or produced by the USGS 
+            is considered to be in the US public domain.
           </Paragraph>
+          <List
+            dataSource={resources}
+            renderItem={(item) => (
+              <List.Item>
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {item.name}
+                </a>
+              </List.Item>
+            )}
+          />
         </Card>
       </Content>
     </Layout>
