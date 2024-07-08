@@ -1,82 +1,92 @@
+// Importación de fuente desde Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 
-$primary-color: #F6F5F5;
-$secondary-color: #08142c;
-$btn-color:#0d234e;
-$background-color: #08142c;
-$text-color: white;
-$neon-color: #F6F5F5;
-$text-secundary: white;
-$details-color: white;
+// Variables de colores y estilos
+$primary-color: #F6F5F5;  // Color primario
+$secondary-color: #08142c;  // Color secundario
+$btn-color: #0d234e;  // Color del botón
+$background-color: #08142c;  // Color de fondo
+$text-color: white;  // Color de texto principal
+$neon-color: #F6F5F5;  // Color para efecto de neón
+$text-secundary: white;  // Color de texto secundario
+$details-color: white;  // Color para detalles
 
+// Estilos para el cuerpo del documento
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Nunito', sans-serif;
-  background-color: $background-color;
+  margin: 0;  // Sin márgenes
+  padding: 0;  // Sin relleno
+  font-family: 'Nunito', sans-serif;  // Fuente principal
+  background-color: $background-color;  // Color de fondo del cuerpo
 }
 
+// Contenedor principal
 .main-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100vh;
-  padding: 0 10%;
-  background: radial-gradient(80% 120% at 55% 0%, black 55%, #0d2044);
-  color: $text-color;
+  display: flex;  // Mostrar como flexbox
+  align-items: center;  // Alinear elementos al centro verticalmente
+  justify-content: space-between;  // Espacio entre elementos
+  height: 100vh;  // Alto completo de la ventana
+  padding: 0 10%;  // Relleno horizontal
+  background: radial-gradient(80% 120% at 55% 0%, black 55%, #0d2044);  // Gradiente radial de fondo
+  color: $text-color;  // Color de texto principal
 }
 
+// Contenido dentro del contenedor principal
 .content {
-  text-align: center;
-  max-width: 50%;
+  text-align: center;  // Alinear texto al centro
+  max-width: 50%;  // Ancho máximo del contenido
 
+  // Título principal
   h1 {
-    font-size: 3rem;
-    color: $text-color;
-    margin-bottom: 20px;
+    font-size: 3rem;  // Tamaño de fuente grande
+    color: $text-color;  // Color de texto principal
+    margin-bottom: 20px;  // Margen inferior
 
+    // Estilo para parte resaltada
     span {
-      color: $neon-color; // Color de neón cian
-      font-weight: bold;
+      color: $neon-color;  // Color de neón
+      font-weight: bold;  // Fuente en negrita
       text-shadow:
-        0 0 5px rgba(19, 45, 97, 1.8),
+        0 0 5px rgba(19, 45, 97, 1.8),  // Sombra de texto
         0 0 10px rgba(19, 45, 97, 1.6),
         0 0 20px rgba(19, 45, 97, 1.5),
         0 0 40px rgba(19, 45, 97, 5.4),
-        0 0 80px rgba(19, 45, 97, 12.3); // Efecto de neón
-
+        0 0 80px rgba(19, 45, 97, 12.3);  // Efecto de neón
     }
   }
 
+  // Detalles adicionales
   .details {
-    font-size: 1.2rem;
-    color: $details-color;
-    margin-bottom: 30px;
+    font-size: 1.2rem;  // Tamaño de fuente más pequeño
+    color: $details-color;  // Color de detalles
+    margin-bottom: 30px;  // Margen inferior
   }
 
+  // Estilos para botón
   .btn {
-    font-size: 1rem;
-    padding: 10px 20px;
-    color: $text-secundary;
-    background-color: darken($btn-color, 0.5%);
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.8s ease;
+    font-size: 1rem;  // Tamaño de fuente del botón
+    padding: 10px 20px;  // Relleno interno
+    color: $text-secundary;  // Color de texto secundario
+    background-color: darken($btn-color, 0.5%);  // Color de fondo del botón con oscurecimiento
+    border: none;  // Sin borde
+    border-radius: 5px;  // Borde redondeado
+    text-decoration: none;  // Sin decoración de texto
+    cursor: pointer;  // Cambio de cursor
+    transition: background-color 0.8s ease;  // Transición suave
 
+    // Estilos al pasar el mouse por encima
     &:hover {
-      background-color:$secondary-color 
+      background-color: $secondary-color;  // Cambio de color de fondo al pasar el mouse
     }
   }
 }
 
+// Contenedor de imagen
 .image-container {
-  max-width: 40%;
+  max-width: 40%;  // Ancho máximo del contenedor de imagen
 
   img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+    width: 100%;  // Ancho completo de la imagen
+    height: auto;  // Altura automática según el ancho
+    border-radius: 10px;  // Borde redondeado
   }
 }
