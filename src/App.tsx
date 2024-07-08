@@ -29,7 +29,7 @@ export function App(): JSX.Element {
               </Menu.Item>
               <Menu.Item key="/predictions">
                 <Link to="/predictions" aria-label="Predictions Page">Predictions</Link>
-              </Menu.Item>
+              </Menu.Item> 
               <Menu.Item key="/about">
                 <Link to="/about" aria-label="About Page">About</Link>
               </Menu.Item>
