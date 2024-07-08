@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Layout, Form, Input, Button } from 'antd';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { ErrorBoundary } from 'components';
 import { ToastContainer } from 'react-toastify';
-import * as ort from 'onnxruntime-web';
 import 'react-toastify/dist/ReactToastify.css';
 import 'antd/dist/reset.css';
 import './PredictionPage.scss';
@@ -13,46 +12,28 @@ const PredictionPage = () => {
   const [filterOptions, setFilterOptions] = useState({ latitude: 0, longitude: 0, depth: 0 });
   const [prediction, setPrediction] = useState(null);
   const [form] = Form.useForm();
-  const [session, setSession] = useState(null);
 
   const center = [13.794185, -88.89653];
-
-  useEffect(() => {
-    const loadModel = async () => {
-      try {
-        ort.env.wasm.wasmPaths = {
-          'ort-wasm.wasm': '/ort-wasm.wasm',
-          'ort-wasm-simd.wasm': '/ort-wasm-simd.wasm',
-          'ort-wasm-threaded.wasm': '/ort-wasm-threaded.wasm',
-          'ort-wasm-simd-threaded.wasm': '/ort-wasm-simd-threaded.wasm',
-        };
-        const model = await ort.InferenceSession.create('/random_forest_model.onnx');
-        setSession(model);
-      } catch (error) {
-        console.error('Error loading the model:', error);
-      }
-    };
-
-    loadModel();
-  }, []);
 
   const onFinish = async (values) => {
     console.log('Filter options:', values);
     setFilterOptions(values);
-    makePredictions(values);
+    await makePredictions(values);
   };
 
   const makePredictions = async (filterOptions) => {
-    if (session) {
-      try {
-        const input = new ort.Tensor('float32', Float32Array.from([filterOptions.latitude, filterOptions.longitude, filterOptions.depth]), [1, 3]);
-        const feeds = { float_input: input };  // Ensure 'float_input' matches your model input name
-        const results = await session.run(feeds);
-        const prediction = results['output'].data[0]; // Ensure 'output' matches your model output name
-        setPrediction(prediction);
-      } catch (error) {
-        console.error('Error making predictions:', error);
-      }
+    try {
+      const response = await fetch('http://localhost:5000/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(filterOptions),
+      });
+      const data = await response.json();
+      setPrediction(data.prediction);
+    } catch (error) {
+      console.error('Error making predictions:', error);
     }
   };
 
@@ -82,7 +63,20 @@ const PredictionPage = () => {
       <Layout.Content>
         <ErrorBoundary>
           <div className="prediction-container">
+
             <Form form={form} name="filter-form" layout="inline" onFinish={onFinish} initialValues={filterOptions}>
+
+              <div className='prediction-title'>
+                <h1>Magnitude Predictor</h1>
+                <p>Select a place to predict the magnitude of the next earthquake there.</p>
+              </div>
+
+              {prediction !== null && (
+                <div className="prediction-result">
+                  <h3>Predicted Magnitude: {prediction.toFixed(1)}</h3>
+                </div>
+              )}
+
               <Form.Item className="form-item" name="latitude" label="Latitude">
                 <Input type="number" step="0.01" />
               </Form.Item>
@@ -111,6 +105,15 @@ const PredictionPage = () => {
               )}
             </MapContainer>
           </div>
+
+          <div className="notebook">
+            <h3>How does this work?</h3>
+            <a href="https://colab.research.google.com/drive/1dx0-o1pSYkzCiWkAmxBqZWZ2M5tuaBJs?usp=sharing"
+               target="_blank" rel="noopener noreferrer">
+              View the Notebook
+            </a>
+          </div>
+
         </ErrorBoundary>
       </Layout.Content>
       <ToastContainer />

@@ -13,6 +13,7 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  align-content: space-evenly;
   width: 50%;
 }
 
@@ -25,6 +26,43 @@ form {
 .predict-btn {
   margin-top: 15%;
 }
+
+.prediction-result {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.prediction-title H1{
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.notebook {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.notebook h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.notebook a {
+  text-decoration: none;
+  color: #1890ff;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.notebook a:hover {
+  text-decoration: underline;
+}
+
 
 .form-item label{
 
