@@ -4,29 +4,43 @@ Este es el cliente web del proyecto QuakeSphere.
 
 ' link de proyecto '
 
-## features:
- - Añadir datos sismicos de API externa
- - Agregar pagina Main para describir la funcionalidad.
- - Filtrar eventos sísmicos por:
-   - Rango de fechas
-   - Rango de magnitud
-   - Rango de intensidad
-   - Rango de profundidad
- - Realizar cambio de interfaz en las diferentes paginas del cliente
- - Agregar pagina de Graficos de sismos por pais
- - Agregar componente de Machine Learning para predicciones.
+## Features:
+- Añadir datos sísmicos de API externa.
+- Agregar página Main para describir la funcionalidad.
+- Filtrar eventos sísmicos por:
+  - Rango de fechas.
+  - Rango de magnitud.
+  - Rango de intensidad.
+  - Rango de profundidad.
+- Realizar cambio de interfaz en las diferentes páginas del cliente.
+- Agregar página de Gráficos de sismos por país.
+- Agregar componente de Machine Learning para predicciones.
+
+## Tecnologías Utilizadas:
+- **[Vite](https://vitejs.dev/)**: Herramienta de desarrollo rápida y optimizada para proyectos modernos de frontend. 
+- **[React](https://reactjs.org/)**: Biblioteca de JavaScript para construir interfaces de usuario.
+- **[TypeScript](https://www.typescriptlang.org/)**: Superconjunto de JavaScript que agrega tipos estáticos opcionales.
+- **[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)**: Lenguaje estándar para crear páginas web y aplicaciones.
+- **[SCSS](https://sass-lang.com/)**: Preprocesador CSS que agrega características como variables, anidación y mixins.
+
+## Dependencias Principales:
+- **[axios](https://axios-http.com/)**: Biblioteca para hacer solicitudes HTTP.
+- **[react-colorful](https://github.com/omgovich/react-colorful)**: Selector de color para React.
+- **[react-globe.gl](https://github.com/vasturiano/react-globe.gl)**: Biblioteca para crear globos interactivos en React.
+- **[react-toastify](https://github.com/fkhadra/react-toastify)**: Biblioteca para mostrar notificaciones en React.
+- **[recharts](https://recharts.org/)**: Conjunto de gráficos para React basado en componentes.
 
 ## :wrench: Setup:
 1. ```bash
    npm i
    ```
-2. Copiar el .env.sample en .env.local y llenar los valores de las variables de entorno
+2. Copiar el .env.sample en .env.local y llenar los valores de las variables de entorno.
 3. ```bash
-    npm run dev
+   npm run dev
    ```
-   Iniciar el servidor de Vite
-4. Abrir el navegador
 
+   Iniciar el servidor de Vite.
+4. Abrir el navegador.
 ---
 
 # Sistemas de Información Geográfica
@@ -63,3 +77,9 @@ El Salvador está situado en una región de gran actividad sísmica, lo que lo h
 ## Conclusión
 
 El Proyecto QuakeSphere tiene el potencial de proporcionar información valiosa sobre la frecuencia, la localización y el impacto de los terremotos en la región. Mediante la creación de un mapa completo, en tiempo real y fácil de usar, el proyecto pretende aumentar la concienciación y la preparación ante los terremotos y ayudar a reducir su impacto en El Salvador. Además, la integración de tecnologías avanzadas como Machine Learning y USGS permite una mejor comprensión y anticipación de la actividad sísmica, contribuyendo significativamente a la seguridad pública y la planificación de emergencias.
+## Recursos
+
+Los datos y la información creados o producidos por el USGS se consideran de dominio público en los Estados Unidos.
+
+[USGS Copyright y créditos](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits#:~:text=Important%20information%20related%20to%20copyrights,in%20the%20U.S.%20Public%20Domain)
+
