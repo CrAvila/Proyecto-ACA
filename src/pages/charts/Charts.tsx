@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './Charts.scss';
 import { CapClient } from '../../api/capClient';
 import {
@@ -13,6 +13,7 @@ import {
 } from 'recharts';
 import { countries } from './countries';
 
+// Definición de la interfaz para los datos de terremotos
 interface EarthquakeData {
   date: string;
   magnitude: number;
@@ -23,11 +24,16 @@ interface EarthquakeData {
 }
 
 export function Charts(): JSX.Element {
+  // Estado para el modo claro/oscuro
   const [lightMode, setLightMode] = useState(false);
+  // Estado para el país seleccionado
   const [selectedCountry, setSelectedCountry] = useState(countries[56]);
+  // Estado para los datos de terremotos
   const [data, setData] = useState<EarthquakeData[]>([]);
-  const hasFetchedData = useRef(false); // UseRef to avoid multiple API calls
+  // useRef para evitar múltiples llamadas a la API
+  const hasFetchedData = useRef(false);
 
+  // useEffect para obtener datos de terremotos al cargar el componente
   useEffect(() => {
     if (!hasFetchedData.current) {
       fetchEarthquakeData(selectedCountry.lat, selectedCountry.lon);
@@ -35,6 +41,7 @@ export function Charts(): JSX.Element {
     }
   }, []);
 
+  // Función para obtener datos de terremotos de la API
   const fetchEarthquakeData = async (lat: number, lon: number) => {
     const capClient = new CapClient('test-api-key');
     try {
@@ -58,6 +65,7 @@ export function Charts(): JSX.Element {
     }
   };
 
+  // Manejar el cambio de país seleccionado
   const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const country = countries.find((c) => c.name === e.target.value);
     if (country) {
@@ -66,6 +74,7 @@ export function Charts(): JSX.Element {
     }
   };
 
+  // Alternar entre modo claro y oscuro
   const toggleLightMode = () => {
     setLightMode(!lightMode);
   };
