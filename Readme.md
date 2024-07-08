@@ -22,6 +22,8 @@ Este es el cliente web del proyecto QuakeSphere.
 - **[TypeScript](https://www.typescriptlang.org/)**: Superconjunto de JavaScript que agrega tipos estáticos opcionales.
 - **[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)**: Lenguaje estándar para crear páginas web y aplicaciones.
 - **[SCSS](https://sass-lang.com/)**: Preprocesador CSS que agrega características como variables, anidación y mixins.
+- **[Scikit-Learn](https://scikit-learn.org/)**: Biblioteca de aprendizaje automático para Python. 
+- **[Flask](https://flask.palletsprojects.com/)**: Microframework para Python que permite construir aplicaciones web.
 
 ## Dependencias Principales:
 - **[axios](https://axios-http.com/)**: Biblioteca para hacer solicitudes HTTP.
