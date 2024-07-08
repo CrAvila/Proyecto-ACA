@@ -30,7 +30,6 @@ Este es el cliente web del proyecto QuakeSphere.
 - **[react-toastify](https://github.com/fkhadra/react-toastify)**: Biblioteca para mostrar notificaciones en React.
 - **[recharts](https://recharts.org/)**: Conjunto de gráficos para React basado en componentes.
 
-  
 ## :wrench: Setup:
 1. ```bash
    npm i
@@ -39,9 +38,9 @@ Este es el cliente web del proyecto QuakeSphere.
 3. ```bash
    npm run dev
    ```
+
    Iniciar el servidor de Vite.
 4. Abrir el navegador.
-
 ---
 
 # Sistemas de Información Geográfica
@@ -78,10 +77,9 @@ El Salvador está situado en una región de gran actividad sísmica, lo que lo h
 ## Conclusión
 
 El Proyecto QuakeSphere tiene el potencial de proporcionar información valiosa sobre la frecuencia, la localización y el impacto de los terremotos en la región. Mediante la creación de un mapa completo, en tiempo real y fácil de usar, el proyecto pretende aumentar la concienciación y la preparación ante los terremotos y ayudar a reducir su impacto en El Salvador. Además, la integración de tecnologías avanzadas como Machine Learning y USGS permite una mejor comprensión y anticipación de la actividad sísmica, contribuyendo significativamente a la seguridad pública y la planificación de emergencias.
-
-
 ## Recursos
 
 Los datos y la información creados o producidos por el USGS se consideran de dominio público en los Estados Unidos.
 
 [USGS Copyright y créditos](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits#:~:text=Important%20information%20related%20to%20copyrights,in%20the%20U.S.%20Public%20Domain)
+

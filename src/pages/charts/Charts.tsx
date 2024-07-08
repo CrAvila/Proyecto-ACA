@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef} from 'react';
 import './Charts.scss';
 import { CapClient } from '../../api/capClient';
 import {
@@ -24,21 +24,21 @@ interface EarthquakeData {
 
 export function Charts(): JSX.Element {
   const [lightMode, setLightMode] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [selectedCountry, setSelectedCountry] = useState(countries[56]);
   const [data, setData] = useState<EarthquakeData[]>([]);
+  const hasFetchedData = useRef(false); // UseRef to avoid multiple API calls
 
   useEffect(() => {
-    fetchEarthquakeData();
-  }, [selectedCountry]);
+    if (!hasFetchedData.current) {
+      fetchEarthquakeData(selectedCountry.lat, selectedCountry.lon);
+      hasFetchedData.current = true;
+    }
+  }, []);
 
-  const fetchEarthquakeData = async () => {
+  const fetchEarthquakeData = async (lat: number, lon: number) => {
     const capClient = new CapClient('test-api-key');
     try {
-      const response = await capClient.getQuakesByLocation(
-        selectedCountry.lat,
-        selectedCountry.lon,
-        200
-      );
+      const response = await capClient.getQuakesByLocation(lat, lon, 200);
 
       if (response instanceof Error) {
         console.error('Error fetching earthquake data:', response.message);
@@ -58,6 +58,14 @@ export function Charts(): JSX.Element {
     }
   };
 
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const country = countries.find((c) => c.name === e.target.value);
+    if (country) {
+      setSelectedCountry(country);
+      fetchEarthquakeData(country.lat, country.lon);
+    }
+  };
+
   const toggleLightMode = () => {
     setLightMode(!lightMode);
   };
@@ -72,10 +80,7 @@ export function Charts(): JSX.Element {
       <select
         className={lightMode ? 'light-mode' : ''}
         value={selectedCountry.name}
-        onChange={(e) => {
-          const country = countries.find((c) => c.name === e.target.value);
-          if (country) setSelectedCountry(country);
-        }}
+        onChange={handleCountryChange}
       >
         {countries.map((country) => (
           <option key={country.name} value={country.name}>
