@@ -20,7 +20,13 @@ const PredictionPage = () => {
   useEffect(() => {
     const loadModel = async () => {
       try {
-        const model = await ort.InferenceSession.create('src/utils/ml/random_forest_model.onnx');
+        ort.env.wasm.wasmPaths = {
+          'ort-wasm.wasm': '/ort-wasm.wasm',
+          'ort-wasm-simd.wasm': '/ort-wasm-simd.wasm',
+          'ort-wasm-threaded.wasm': '/ort-wasm-threaded.wasm',
+          'ort-wasm-simd-threaded.wasm': '/ort-wasm-simd-threaded.wasm',
+        };
+        const model = await ort.InferenceSession.create('/random_forest_model.onnx');
         setSession(model);
       } catch (error) {
         console.error('Error loading the model:', error);
