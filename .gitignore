@@ -26,3 +26,6 @@ dist-ssr
 
 *.pkl
 random_forest_model.pkl
+random_forest_model.pkl
+*.tar.gz
+*.pkl
