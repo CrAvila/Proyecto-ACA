@@ -31,3 +31,6 @@ random_forest_model.pkl
 *.pkl
 random_forest_model.pkl
 *.tar.gz
+random_forest_model.pkl
+*.tar.gz
+bfg.jar
