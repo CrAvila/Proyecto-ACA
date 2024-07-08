@@ -1,117 +1,116 @@
 // Estilos para el componente Charts
 
 .container {
-  padding: 20px;
-  background: radial-gradient(80% 120% at 55% 0%, black 55%, #0d2044);
-  color: #fff;
-  
+  padding: 20px; // Espaciado interno
+  background: radial-gradient(80% 120% at 55% 0%, black 55%, #0d2044); // Fondo gradiente
+  color: #fff; // Color del texto
 
   &.light-mode {
-    background: #fff;
-    color: #000;
+    background: #fff; // Fondo en modo claro
+    color: #000; // Color del texto en modo claro
   }
 
   h1 {
-    color: inherit;
+    color: inherit; // Heredar color del contenedor
   }
 
   button {
-    background-color: #fff;
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
+    background-color: #fff; // Fondo del botón
+    color: #000; // Color del texto del botón
+    border: none; // Sin borde
+    padding: 10px 20px; // Espaciado interno
+    cursor: pointer; // Cursor de puntero
+    margin-bottom: 20px; // Margen inferior
 
     &.light-mode {
-      background-color: #000;
-      color: #fff;
+      background-color: #000; // Fondo del botón en modo claro
+      color: #fff; // Color del texto del botón en modo claro
     }
   }
 
   select {
-    margin: 20px auto;
-    padding: 10px;
-    border-color: #fff;
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-    display: block; 
+    margin: 20px auto; // Margen
+    padding: 10px; // Espaciado interno
+    border-color: #fff; // Color del borde
+    background-color: #000; // Fondo
+    color: #fff; // Color del texto
+    cursor: pointer; // Cursor de puntero
+    display: block; // Mostrar como bloque
 
     &.light-mode {
-      background-color: #fff;
-      border-color: #000;
-      color: #000;
+      background-color: #fff; // Fondo en modo claro
+      border-color: #000; // Color del borde en modo claro
+      color: #000; // Color del texto en modo claro
     }
   }
 
   .table-container {
-    max-height: 300px; /* Ajusta este valor según tus necesidades */
-    overflow-y: auto;
-    border: 1px solid #fff;
-    margin-top: 20px;
+    max-height: 300px; // Altura máxima
+    overflow-y: auto; // Desplazamiento vertical
+    border: 1px solid #fff; // Borde
+    margin-top: 20px; // Margen superior
 
     &.light-mode {
-      border-color: #ddd;
+      border-color: #ddd; // Color del borde en modo claro
     }
   }
 
   table {
-    width: 100%;
-    border-collapse: collapse;
+    width: 100%; // Ancho completo
+    border-collapse: collapse; // Colapsar bordes
 
     th,
     td {
-      border: 1px solid #fff;
-      padding: 8px;
-      text-align: left;
-      background-color: radial-gradient(80% 120% at 55% 0%, black 55%, #0d2044);
-      color: #fff;
+      border: 1px solid #fff; // Borde de celdas
+      padding: 8px; // Espaciado interno
+      text-align: left; // Alineación del texto
+      background-color: radial-gradient(80% 120% at 55% 0%, black 55%, #0d2044); // Fondo
+      color: #fff; // Color del texto
 
       &.light-mode {
-        background-color: #fff;
-        color: #000;
-        border-color: #ddd;
+        background-color: #fff; // Fondo en modo claro
+        color: #000; // Color del texto en modo claro
+        border-color: #ddd; // Color del borde en modo claro
       }
     }
 
     th {
-      background-color: radial-gradient(80% 120% at 55% 0%, black 55%, #0d2044);
-      color: #fff;
-      border-color: #fff;
+      background-color: radial-gradient(80% 120% at 55% 0%, black 55%, #0d2044); // Fondo de encabezado
+      color: #fff; // Color del texto del encabezado
+      border-color: #fff; // Color del borde
 
       &.light-mode {
-        background-color: #f2f2f2;
-        color: #000;
+        background-color: #f2f2f2; // Fondo en modo claro
+        color: #000; // Color del texto en modo claro
       }
     }
 
     tr:hover {
-      background-color: #333;
+      background-color: #333; // Fondo al pasar el ratón
 
       &.light-mode {
-        background-color: #ddd;
+        background-color: #ddd; // Fondo en modo claro al pasar el ratón
       }
     }
   }
 
-  /* Estilos para el scroll en modo oscuro */
+  // Estilos para el scroll en modo claro
   .table-container.light-mode {
     ::-webkit-scrollbar {
-      width: 12px;
+      width: 12px; // Ancho del scroll
     }
 
     ::-webkit-scrollbar-track {
-      background: #333;
+      background: #333; // Fondo del track
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #555;
-      border-radius: 10px;
+      background: #555; // Fondo del thumb
+      border-radius: 10px; // Bordes redondeados
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #777;
+      background: #777; // Fondo del thumb al pasar el ratón
     }
   }
 }
