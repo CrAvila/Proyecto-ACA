@@ -1,110 +1,113 @@
-/* 
+// Estilos CSS para un componente '.ab' (comentado)
+/*
 .ab{
     padding: 1.5em 1em;
     margin: 10px;
     border-radius: 15px;
-    
 }
 
 .ab h1 {
     color: rgb(255, 69, 69);
 }
+*/
 
- */
-// AGREGADO DE NUEVOS COMPONETES SCSS
+// Estilos agregados para nuevos componentes SCSS
 .about-layout {
-    background: #f0f2f5;
-    padding: 30px;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background: #f0f2f5;  // Fondo del layout
+    padding: 30px;  // Espaciado interno
+    min-height: 100vh;  // Altura mínima de la vista
+    display: flex;  // Flexbox para alineación y distribución
+    justify-content: center;  // Centrado horizontal
+    align-items: center;  // Centrado vertical
+    flex-direction: column;  // Columna para alinear contenido
 }
 
 .about-content {
-    max-width: 900px;
-    width: 100%;
+    max-width: 900px;  // Ancho máximo del contenido
+    width: 100%;  // Ancho completo del contenido
 }
 
 .about-card {
-    background: #ffffff;
-    padding: 24px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.6s;
+    background: #ffffff;  // Fondo del card
+    padding: 24px;  // Espaciado interno del card
+    margin-bottom: 20px;  // Margen inferior
+    border-radius: 8px;  // Radio de borde
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  // Sombra ligera
+    transition: transform 0.6s;  // Transición de transformación
 }
 
 .about-card h1, .about-card h2 {
-    color: #1890ff;
+    color: #1890ff;  // Color de los títulos dentro del card
 }
 
 .about-card ul {
-    padding-left: 20px;
+    padding-left: 20px;  // Sangría izquierda para listas dentro del card
 }
 
 .about-card ul li {
-    margin-bottom: 10px;
+    margin-bottom: 10px;  // Margen inferior para elementos de lista dentro del card
 }
 
 a {
-    color: #1890ff;
-    text-decoration: none;
+    color: #1890ff;  // Color de los enlaces
+    text-decoration: none;  // Sin subrayado predeterminado
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: underline;  // Subrayado al pasar el mouse por encima
 }
 
-/* .flip-card {
-    cursor: pointer;  background-color: transparent;
-    width: 100%;
-    height: 200px;
-    perspective: 1000px;
+/*
+.flip-card {
+    cursor: pointer;  // Cambia el cursor a pointer
+    background-color: transparent;  // Fondo transparente
+    width: 100%;  // Ancho completo
+    height: 200px;  // Altura fija
+    perspective: 1000px;  // Perspectiva para el efecto 3D
 }
-    
+
 .flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;  // Posición relativa
+    width: 100%;  // Ancho completo
+    height: 100%;  // Altura completa
+    text-align: center;  // Alineación centrada del texto
+    transition: transform 0.8s;  // Transición de transformación
+    transform-style: preserve-3d;  // Estilo de transformación 3D preservado
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  // Sombra ligera
 }
 
 .flip-card.flipped .flip-card-inner {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg);  // Rotación 3D al estar volteado
 }
 
 .flip-card-front,
 .flip-card-back {
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border: none;
-    background: #ffffff;
-    padding: 24px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;  // Ancho completo
+    height: 100%;  // Altura completa
+    backface-visibility: hidden;  // Oculta el lado trasero en la rotación
+    border: none;  // Sin borde
+    background: #ffffff;  // Fondo blanco
+    padding: 24px;  // Espaciado interno
+    border-radius: 8px;  // Radio de borde
+    display: flex;  // Flexbox para alineación
+    flex-direction: column;  // Columna para alinear contenido
+    justify-content: center;  // Centrado vertical
+    align-items: center;  // Centrado horizontal
 }
 
 .flip-card-back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg);  // Rotación del lado trasero
 }
 
-.flipped .flip-card-front{
-    transform: rotateY(180deg);
+.flipped .flip-card-front {
+    transform: rotateY(180deg);  // Rotación del lado frontal al estar volteado
 }
 
-.flipped .flip-card-back{
-    transform: rotateY(0);
+.flipped .flip-card-back {
+    transform: rotateY(0);  // Rotación del lado trasero al estar volteado
 }
 
-:where(.css-dev-only-do-not-override-j0nf2s).ant-card .ant-card-grid{
-    width: auto;
-} */
+:where(.css-dev-only-do-not-override-j0nf2s).ant-card .ant-card-grid {
+    width: auto;  // Ancho automático para grid de ant-card
+}
+*/  // Fin de estilos comentados
