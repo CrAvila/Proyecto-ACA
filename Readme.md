@@ -17,18 +17,18 @@ Este es el cliente web del proyecto QuakeSphere.
 - Agregar componente de Machine Learning para predicciones.
 
 ## Tecnologías Utilizadas:
-- **Vite**: Herramienta de desarrollo rápida y optimizada para proyectos modernos de frontend. [Vite](https://vitejs.dev/)
-- **React**: Biblioteca de JavaScript para construir interfaces de usuario. [React](https://reactjs.org/)
-- **TypeScript**: Superconjunto de JavaScript que agrega tipos estáticos opcionales. [TypeScript](https://www.typescriptlang.org/)
-- **HTML**: Lenguaje estándar para crear páginas web y aplicaciones. [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-- **SCSS**: Preprocesador CSS que agrega características como variables, anidación y mixins. [SCSS](https://sass-lang.com/)
+- **[Vite](https://vitejs.dev/)**: Herramienta de desarrollo rápida y optimizada para proyectos modernos de frontend. 
+- **[React](https://reactjs.org/)**: Biblioteca de JavaScript para construir interfaces de usuario.
+- **[TypeScript](https://www.typescriptlang.org/)**: Superconjunto de JavaScript que agrega tipos estáticos opcionales.
+- **[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)**: Lenguaje estándar para crear páginas web y aplicaciones.
+- **[SCSS](https://sass-lang.com/)**: Preprocesador CSS que agrega características como variables, anidación y mixins.
 
 ## Dependencias Principales:
-- **axios**: Biblioteca para hacer solicitudes HTTP. [axios](https://axios-http.com/)
-- **react-colorful**: Selector de color para React. [react-colorful](https://github.com/omgovich/react-colorful)
-- **react-globe.gl**: Biblioteca para crear globos interactivos en React. [react-globe.gl](https://github.com/vasturiano/react-globe.gl)
-- **react-toastify**: Biblioteca para mostrar notificaciones en React. [react-toastify](https://github.com/fkhadra/react-toastify)
-- **recharts**: Conjunto de gráficos para React basado en componentes. [recharts](https://recharts.org/)
+- **[axios](https://axios-http.com/)**: Biblioteca para hacer solicitudes HTTP.
+- **[react-colorful](https://github.com/omgovich/react-colorful)**: Selector de color para React.
+- **[react-globe.gl](https://github.com/vasturiano/react-globe.gl)**: Biblioteca para crear globos interactivos en React.
+- **[react-toastify](https://github.com/fkhadra/react-toastify)**: Biblioteca para mostrar notificaciones en React.
+- **[recharts](https://recharts.org/)**: Conjunto de gráficos para React basado en componentes.
 
   
 ## :wrench: Setup:
