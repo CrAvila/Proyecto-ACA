@@ -1,41 +1,60 @@
-import React, { useState } from 'react';
-import { Layout, Menu, Form, Input, Button } from 'antd';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Layout, Form, Input, Button } from 'antd';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { ErrorBoundary } from 'components';
 import { ToastContainer } from 'react-toastify';
-import * as tf from '@tensorflow/tfjs';
+import * as ort from 'onnxruntime-web';
 import 'react-toastify/dist/ReactToastify.css';
 import 'antd/dist/reset.css';
 import './PredictionPage.scss';
 
 const PredictionPage = () => {
-  const route = useLocation();
   const [filterOptions, setFilterOptions] = useState({ latitude: 0, longitude: 0, depth: 0 });
-  const [predictionData, setPredictionData] = useState([]);
+  const [prediction, setPrediction] = useState(null);
   const [form] = Form.useForm();
+  const [session, setSession] = useState(null);
 
   const center = [13.794185, -88.89653];
 
-  const onFinish = (values: any) => {
+  useEffect(() => {
+    const loadModel = async () => {
+      try {
+        const model = await ort.InferenceSession.create('src/utils/ml/random_forest_model.onnx');
+        setSession(model);
+      } catch (error) {
+        console.error('Error loading the model:', error);
+      }
+    };
+
+    loadModel();
+  }, []);
+
+  const onFinish = async (values) => {
     console.log('Filter options:', values);
     setFilterOptions(values);
     makePredictions(values);
   };
 
-  const makePredictions = async (filterOptions: any) => {
-    const model = await tf.loadLayersModel('/path/to/your/model.json');
-    const input = tf.tensor([[filterOptions.latitude, filterOptions.longitude, filterOptions.depth]]);
-    const predictions = model.predict(input) as tf.Tensor;
-    setPredictionData(predictions.arraySync());
+  const makePredictions = async (filterOptions) => {
+    if (session) {
+      try {
+        const input = new ort.Tensor('float32', Float32Array.from([filterOptions.latitude, filterOptions.longitude, filterOptions.depth]), [1, 3]);
+        const feeds = { float_input: input };  // Ensure 'float_input' matches your model input name
+        const results = await session.run(feeds);
+        const prediction = results['output'].data[0]; // Ensure 'output' matches your model output name
+        setPrediction(prediction);
+      } catch (error) {
+        console.error('Error making predictions:', error);
+      }
+    }
   };
 
   const LocationMarker = () => {
     useMapEvents({
       click(e) {
         const { lat, lng } = e.latlng;
-        setFilterOptions(prev => {
+        setFilterOptions((prev) => {
           const newOptions = { ...prev, latitude: lat, longitude: lng };
           form.setFieldsValue(newOptions);
           return newOptions;
@@ -79,11 +98,11 @@ const PredictionPage = () => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
               <LocationMarker />
-              {predictionData.map((prediction, index) => (
-                <Marker key={index} position={[filterOptions.latitude, filterOptions.longitude]}>
+              {prediction !== null && (
+                <Marker position={[filterOptions.latitude, filterOptions.longitude]}>
                   <Popup>Predicted Magnitude: {prediction}</Popup>
                 </Marker>
-              ))}
+              )}
             </MapContainer>
           </div>
         </ErrorBoundary>
