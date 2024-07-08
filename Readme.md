@@ -84,4 +84,3 @@ El Proyecto QuakeSphere tiene el potencial de proporcionar información valiosa 
 Los datos y la información creados o producidos por el USGS se consideran de dominio público en los Estados Unidos.
 
 [USGS Copyright y créditos](https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits#:~:text=Important%20information%20related%20to%20copyrights,in%20the%20U.S.%20Public%20Domain)
-```
