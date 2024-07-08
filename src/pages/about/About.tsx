@@ -3,17 +3,18 @@ import { Card, Typography, Layout, List } from 'antd';
 import { GithubOutlined } from '@ant-design/icons';
 import './About.scss';
 
-
 const { Title, Paragraph } = Typography;
 const { Content } = Layout;
 
 export function About(): JSX.Element {
+  // Esta variable almacena los anteriores integrantes del equipo
   const lastTeam = [
     'Yury Alejandro Rivera Quintanilla (00081816@uca.edu.sv)',
     'Carlos Roberto Ávila Hernández (00032420@uca.edu.sv)',
     'Francisco Orlando Rodriguez Chica (00060618@uca.edu.sv)',
   ];
 
+  // Esta variable almacena los nuevos integrantes del equipo
   const newTeam = [
     'Carlos Roberto Ávila Hernández (00032420@uca.edu.sv)',
     'Kevin Bryan Hernandez Lopez (00057720@uca.edu.sv)',
@@ -22,31 +23,28 @@ export function About(): JSX.Element {
     'Jonathan Ariel Cabrera Galdamez (00003120@uca.edu.sv)',
   ];
 
+  // Esta variable almacena la información de los repositorios del proyecto
   const repositories = [
     { name: 'Backend Repository', url: 'https://github.com/ShulkMaster/cap' },
     { name: 'Frontend Web Repository', url: 'https://github.com/ShulkMaster/cap-web' },
     { name: 'Proyecto ACA', url: 'https://github.com/CrAvila/Proyecto-ACA'},
   ];
 
+  // Esta variable almacena recursos relacionados con derechos de autor del USGS
   const resources = [
     { name: 'USGS Copyright and credits', url: 'https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits#:~:text=Important%20information%20related%20to%20copyrights,in%20the%20U.S.%20Public%20Domain' },
   ];
 
-/* 
-  const [flipped, setFlipped] = useState(false);
-
-  const handleFlip = () => {
-    setFlipped(!flipped);
-  }; */
-
   return (
     <Layout className="about-layout">
       <Content className="about-content">
+        {/* Card para mostrar recursos */}
         <Card title={<Title level={2}>Resources</Title>} bordered={false} className="about-card">
           <Paragraph>
             Data and information created or produced by the USGS 
             is considered to be in the US public domain.
           </Paragraph>
+          {/* Lista de recursos */}
           <List
             dataSource={resources}
             renderItem={(item) => (
@@ -59,7 +57,9 @@ export function About(): JSX.Element {
           />
         </Card>
         
+        {/* Card para mostrar el último equipo */}
         <Card title={<Title level={2}>Last Team</Title>} bordered={false} className="about-card">
+          {/* Lista de miembros del último equipo */}
           <List
             dataSource={lastTeam}
             renderItem={(item) => (
@@ -70,7 +70,9 @@ export function About(): JSX.Element {
           />
         </Card>
 
+        {/* Card para mostrar el nuevo equipo */}
         <Card title={<Title level={2}>New Team</Title>} bordered={false} className="about-card">
+          {/* Lista de miembros del nuevo equipo */}
           <List
             dataSource={newTeam}
             renderItem={(item) => (
@@ -81,7 +83,9 @@ export function About(): JSX.Element {
           />
         </Card>
 
+        {/* Card para mostrar los repositorios */}
         <Card title={<Title level={2}>Repository</Title>} bordered={false} className="about-card">
+          {/* Lista de repositorios */}
           <List
             dataSource={repositories}
             renderItem={(item) => (
@@ -95,6 +99,7 @@ export function About(): JSX.Element {
           />
         </Card>
 
+        {/* Card para mostrar información sobre el proyecto */}
         <Card title={<Title level={2}>About</Title>} bordered={false} className="about-card">
           <Paragraph>
             CAP is a web page that allows its users to filter from a vast history of earthquakes in
