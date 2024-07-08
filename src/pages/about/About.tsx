@@ -42,14 +42,23 @@ export function About(): JSX.Element {
   return (
     <Layout className="about-layout">
       <Content className="about-content">
-        <Card title={<Title level={2}>About</Title>} bordered={false} className="about-card">
+        <Card title={<Title level={2}>Resources</Title>} bordered={false} className="about-card">
           <Paragraph>
-            CAP is a web page that allows its users to filter from a vast history of earthquakes in
-            the country El Salvador, made by students from the University: Universidad
-            centroAmericana Jose Simeon Cañas also known as UCA in the faculty of engineering.
+            Data and information created or produced by the USGS 
+            is considered to be in the US public domain.
           </Paragraph>
+          <List
+            dataSource={resources}
+            renderItem={(item) => (
+              <List.Item>
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {item.name}
+                </a>
+              </List.Item>
+            )}
+          />
         </Card>
-
+        
         <Card title={<Title level={2}>Last Team</Title>} bordered={false} className="about-card">
           <List
             dataSource={lastTeam}
@@ -86,21 +95,12 @@ export function About(): JSX.Element {
           />
         </Card>
 
-        <Card title={<Title level={2}>Resources</Title>} bordered={false} className="about-card">
+        <Card title={<Title level={2}>About</Title>} bordered={false} className="about-card">
           <Paragraph>
-            Data and information created or produced by the USGS 
-            is considered to be in the US public domain.
+            CAP is a web page that allows its users to filter from a vast history of earthquakes in
+            the country El Salvador, made by students from the University: Universidad
+            centroAmericana Jose Simeon Cañas also known as UCA in the faculty of engineering.
           </Paragraph>
-          <List
-            dataSource={resources}
-            renderItem={(item) => (
-              <List.Item>
-                <a href={item.url} target="_blank" rel="noopener noreferrer">
-                  {item.name}
-                </a>
-              </List.Item>
-            )}
-          />
         </Card>
       </Content>
     </Layout>
