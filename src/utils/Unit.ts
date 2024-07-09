@@ -15,10 +15,10 @@ export function quakeLocString(q: Quake | undefined): string {
   if (!q) {
     return '??';
   }
-  return `${formatToUnit(q.longitude, Units.w)} ${formatToUnit(q.latitude, Units.n)}`;
+  return `${formatToUnit(q.geometry.coordinates[0], Units.w)} ${formatToUnit(q.geometry.coordinates[1], Units.n)}`;
 }
 
 export function quakeTime(q: Quake | undefined): string {
-  const date = new Date(q?.date || 0);
+  const date = new Date(q?.properties.time || 0);
   return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
 }
